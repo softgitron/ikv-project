@@ -13,6 +13,18 @@
             "cwd": "${workspaceRoot}"
         },
         {
+            "name": "Launch (Linux)",
+            "type": "godot-mono",
+            "request": "launch",
+            "mode": "executable",
+            "preLaunchTask": "build",
+            "executable": "/opt/godot-mono-bin/godot/Godot_v3.4.2-stable_mono_x11.64",
+            "executableArguments": [
+                "--path",
+                "${workspaceRoot}"
+            ]
+        },
+        {
             "name": "Attach",
             "type": "mono",
             "request": "attach",
