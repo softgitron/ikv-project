@@ -37,7 +37,7 @@ tile_data = PoolIntArray( 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0
 [node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager"]
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
-position = Vector2( -12120, -4968 )
+position = Vector2( -12080, -4624 )
 motion_scale = Vector2( 0.1, 1 )
 motion_mirroring = Vector2( 10000, 0 )
 script = ExtResource( 8 )
@@ -50,7 +50,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
-position = Vector2( -11552, -4728 )
+position = Vector2( -11512, -4368 )
 motion_scale = Vector2( 0.25, 1 )
 motion_mirroring = Vector2( 7000, 0 )
 
@@ -85,7 +85,7 @@ centered = false
 layer = 1
 
 [node name="Front" type="ParallaxLayer" parent="GameManager/ParallaxForeground"]
-position = Vector2( -13008, -376 )
+position = Vector2( -12984, -992 )
 z_index = 10
 z_as_relative = false
 motion_scale = Vector2( 2, 1 )
