@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/templadder.png-e4530c40b2b417022c76e88a99e32a24.stex"
+path="res://.import/rock.png-12131d710519b59a0f357f584ed5e2c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://templadder.png"
-dest_files=[ "res://.import/templadder.png-e4530c40b2b417022c76e88a99e32a24.stex" ]
+source_file="res://Art/rock.png"
+dest_files=[ "res://.import/rock.png-12131d710519b59a0f357f584ed5e2c0.stex" ]
 
 [params]
 

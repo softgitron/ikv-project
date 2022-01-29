@@ -15,6 +15,7 @@ public class Player : KinematicBody2D
 	[Export]
 	private int gravity = 100;
 	private Sprite sprite;
+	public bool ladder_on = false;
 
 	public override void _Ready()
 	{
@@ -45,5 +46,22 @@ public class Player : KinematicBody2D
 		velocity.x = currentSpeed * direction;
 
 		velocity = MoveAndSlide(velocity);
+
+		if (ladder_on == true) {
+			gravity = 0;
+			if (Input.IsActionPressed("jump_button")) {
+				velocity.y = -maxSpeed;
+			}
+			else if (Input.IsActionPressed("crouch_button")) {
+				velocity.y = maxSpeed;
+			}
+			else
+			{
+				velocity.y = 0; 
+			}
+		}
+		else {
+			gravity = 100;
+		}
 	}
 }
