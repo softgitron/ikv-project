@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ladder/templadder.png" type="Texture" id=1]
+[ext_resource path="res://ladder/Ladder_2D.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 246, 179 )
+
+[node name="Ladder" type="Node2D"]
+
+[node name="Ladder_2D" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder_2D"]
+position = Vector2( 3, -4 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Sprite" type="Sprite" parent="Ladder_2D"]
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="Ladder_2D" to="Ladder_2D" method="_on_Ladder_2D_body_entered"]
+[connection signal="body_exited" from="Ladder_2D" to="Ladder_2D" method="_on_Ladder_2D_body_exited"]
