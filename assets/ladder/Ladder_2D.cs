@@ -10,7 +10,7 @@ public class Ladder_2D : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+
 	}
 
 	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,18 +22,18 @@ public class Ladder_2D : Area2D
 
 	private void _on_Ladder_2D_body_entered(object body)
 	{
-	if (body.GetType().Name.ToString() == "Player") {
-			Player player = (Player) body;
-			player.ladder_on = true;
+		if (body is Player player)
+		{
+			player.ladders++;
 		}
 	}
 
 
 	private void _on_Ladder_2D_body_exited(object body)
 	{
-	if (body.GetType().Name.ToString() == "Player") {
-			Player player = (Player) body;
-			player.ladder_on = false;
+		if (body is Player player)
+		{
+			player.ladders--;
 		}
 	}
 }
