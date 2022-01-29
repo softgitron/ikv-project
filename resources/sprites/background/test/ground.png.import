@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DarkForm1.png-1adc31dd9fbb13b9b8e534a9bba36e8e.stex"
+path="res://.import/ground.png-3d8d51c80de6eab16fb5387a00a0ab98.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/DarkForm1.png"
-dest_files=[ "res://.import/DarkForm1.png-1adc31dd9fbb13b9b8e534a9bba36e8e.stex" ]
+source_file="res://resources/sprites/background/test/ground.png"
+dest_files=[ "res://.import/ground.png-3d8d51c80de6eab16fb5387a00a0ab98.stex" ]
 
 [params]
 

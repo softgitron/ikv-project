@@ -14,6 +14,10 @@ config/name="ikv_project"
 run/main_scene="res://scenes/test/parallax_test.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="2d"
+
 [input]
 
 jump_button={
