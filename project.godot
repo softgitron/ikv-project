@@ -11,7 +11,16 @@ config_version=4
 [application]
 
 config/name="ikv_project"
+run/main_scene="res://scenes/MainScene.tscn"
 config/icon="res://icon.png"
+
+[gui]
+
+theme/custom_font="res://fonts/MainFont.tres"
+
+[mono]
+
+debugger_agent/wait_timeout=15000
 
 [physics]
 
