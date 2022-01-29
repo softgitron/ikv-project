@@ -2,7 +2,7 @@ using System;
 using Godot;
 using System.Collections.Generic;
 
-public class AudioSourceImplementation : AudioSource
+public class AudioSourceImplementation : Node, AudioSource
 {
 	private class TrackData
 	{
@@ -25,7 +25,7 @@ public class AudioSourceImplementation : AudioSource
 	private const int lightWorldThemeVolume = -5;
 	private const int darkWorldThemeVolume = -3;
 
-	private const int fadeTimeMilliseconds = 4000;
+	private const int fadeTimeMilliseconds = 1000;
 
 	private Dictionary<string, TrackData> musicLayers;
 	private Node parent;
@@ -36,7 +36,7 @@ public class AudioSourceImplementation : AudioSource
 		this.musicLayers = new Dictionary<string, TrackData>();
 		foreach(KeyValuePair<string, int> layer in layers)
 		{
-			TrackData trackData = new TrackData((AudioStreamPlayer) this.parent.GetNode(layer.Key), layer.Value);
+			TrackData trackData = new TrackData((AudioStreamPlayer) this.GetNode(layer.Key), layer.Value);
 			this.musicLayers.Add(layer.Key, trackData);
 		}
 	}
@@ -50,10 +50,10 @@ public class AudioSourceImplementation : AudioSource
 		}
 	}
 
-	public AudioSourceImplementation(Node parent)
+	public override void _Ready()
 	{
 		this.parent = parent;
-		this.tween = (Tween)parent.GetNode("Tween");
+		this.tween = (Tween)this.GetNode("Tween");
 		this.AddLayers(new Dictionary<string, int>
 		{
 			{lightPlayerTheme, lightPlayerThemeVolume},
