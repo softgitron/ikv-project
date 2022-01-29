@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/templadder.png-d0135db7ea3ad88e3a43ccaed261a74e.stex"
+path="res://.import/Moony.png-9582d0aa86d1c1527c028ddb64261c0a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ladder/templadder.png"
-dest_files=[ "res://.import/templadder.png-d0135db7ea3ad88e3a43ccaed261a74e.stex" ]
+source_file="res://Art/Moony.png"
+dest_files=[ "res://.import/Moony.png-9582d0aa86d1c1527c028ddb64261c0a.stex" ]
 
 [params]
 
