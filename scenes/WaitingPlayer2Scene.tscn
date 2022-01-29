@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/BiggerMainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/scenes/WaitingPlayer2.cs" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaitingForPlayerLabel" type="Label" parent="."]
+anchor_left = 0.33
+anchor_top = 0.3
+anchor_right = 0.67
+anchor_bottom = 0.4
+custom_fonts/font = ExtResource( 1 )
+text = "Waiting for player 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerIpLabel" type="Label" parent="."]
+anchor_left = 0.33
+anchor_top = 0.5
+anchor_right = 0.67
+anchor_bottom = 0.8
+text = "[Player IP]"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
