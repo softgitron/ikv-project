@@ -23,7 +23,7 @@ position = Vector2( 133, 35 )
 position = Vector2( 415, -228 )
 
 [node name="Ladder" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1024, -86 )
+position = Vector2( 154, -68 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 186, 10 )
