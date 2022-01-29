@@ -15,6 +15,7 @@ public class Player : KinematicBody2D
 	[Export]
 	private int gravity = 100;
 	private Sprite sprite;
+	private AudioSource audioSource;
 
 	public override void _Ready()
 	{
@@ -24,6 +25,7 @@ public class Player : KinematicBody2D
 	{
 		sprite = (Sprite)GetNode("Sprite");
 		SetPhysicsProcess(true);
+		this.audioSource = new AudioSourceImplementation(this);
 	}
 	public override void _PhysicsProcess(float delta)
 	{
