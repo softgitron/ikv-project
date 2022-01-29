@@ -11,3 +11,7 @@ export_presets.cfg
 data_*/
 *.json
 *.json
+*.json
+*.json
+.vscode/launch.json
+.vscode/settings.json
