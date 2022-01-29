@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://resources/sprites/background/test/clouds.png" type="Texture" id=1]
 [ext_resource path="res://resources/sprites/background/test/mountain.png" type="Texture" id=2]
@@ -12,11 +12,20 @@
 [ext_resource path="res://Art/DarkForestParaalxFirstLayer.png" type="Texture" id=10]
 [ext_resource path="res://assets/utilities/DoorTest.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/utilities/PressurePlate.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/utilities/Item.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/utilities/DebugOverlay.tscn" type="PackedScene" id=14]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource( 6 )
+
+[node name="UILayer" type="CanvasLayer" parent="GameManager"]
+
+[node name="DebugOverlay" parent="GameManager/UILayer" instance=ExtResource( 14 )]
+margin_left = 50.0
+margin_top = 50.0
+text = "Testiiiii"
 
 [node name="MainCamera" parent="GameManager" instance=ExtResource( 7 )]
 position = Vector2( 536, -1936 )
@@ -109,3 +118,7 @@ scale = Vector2( 50, 50 )
 
 [node name="Pressure Plate" parent="GameManager/Assets/DoorTest" instance=ExtResource( 12 )]
 position = Vector2( -81.92, -10.24 )
+
+[node name="Item" parent="GameManager/Assets" instance=ExtResource( 13 )]
+position = Vector2( 8704, 1024 )
+scale = Vector2( 3, 3 )

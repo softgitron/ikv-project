@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 public class Player : KinematicBody2D
 {
@@ -15,6 +16,8 @@ public class Player : KinematicBody2D
 	[Export]
 	private int gravity = 100;
 	private Sprite sprite;
+	public List<Area2D> surroundingInteractives = new List<Area2D>();
+	private Item pickedItem;
 
 	public override void _Ready()
 	{
@@ -40,10 +43,51 @@ public class Player : KinematicBody2D
 		{
 			velocity.y -= jump;
 		}
+		if (Input.IsActionJustPressed("interact_button"))
+		{
+			Item item;
+			if (pickedItem != null)
+			{
+				DropItem();
+			}
+			else if ((item = (Item)surroundingInteractives.FirstOrDefault(x => x is Item)) != null)
+			{
+				PickItem(item);
+			}
+		}
 		velocity.y += gravity;
 		currentSpeed = maxSpeed;
 		velocity.x = currentSpeed * direction;
 
 		velocity = MoveAndSlide(velocity);
+	}
+
+	// Handles interacting with items.
+	private void _OnVicinityEntered(Area2D area)
+	{
+		if (area is Item item)
+		{
+			surroundingInteractives.Add(item);
+		}
+	}
+	private void _OnVicinityExited(Area2D area)
+	{
+		surroundingInteractives.Remove(area);
+	}
+	private void PickItem(Item item)
+	{
+		GD.Print(string.Format("Item {0} picked", item.itemName));
+		pickedItem = item;
+		item.PickUp(this);
+	}
+	private void DropItem()
+	{
+		GD.Print(string.Format("Item {0} dropped", pickedItem.itemName));
+		pickedItem.SetDown();
+		pickedItem = null;
+	}
+	public List<Area2D> GetSurroundingItems()
+	{
+		return surroundingInteractives;
 	}
 }
