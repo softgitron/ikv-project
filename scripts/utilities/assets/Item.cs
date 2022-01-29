@@ -17,11 +17,15 @@ public class Item : Area2D
 	}
 	public void SetDown()
 	{
+		Position = owner.Position + new Vector2(0, 250);
 		owner = null;
 		SetProcess(false);
 	}
 	public override void _Process(float delta)
 	{
-		Position = owner.Position;
+		if (owner != null)
+		{
+			Position = owner.Position;
+		}
 	}
 }
