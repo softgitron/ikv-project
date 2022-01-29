@@ -9,8 +9,10 @@ extents = Vector2( 9.37608, 19.1434 )
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -750, 347 )
 script = ExtResource( 2 )
-maxSpeed = 500
-jump = 2000
+maxSpeed = 7500
+jump = 20000
+acceleration = 5000.0
+gravity = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 5 )
