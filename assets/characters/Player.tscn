@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/ladder/templadder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player/Player.cs" type="Script" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.37608, 19.1434 )
 
