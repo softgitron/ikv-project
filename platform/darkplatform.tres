@@ -1,13 +1,13 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Art/DarkForm1.png" type="Texture" id=1]
 
 [resource]
-0/name = "icon.png 0"
+0/name = "DarkForm1.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, -1, 65, 66 )
+0/region = Rect2( 0, 0, 1680, 420 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
