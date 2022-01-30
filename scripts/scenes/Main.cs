@@ -3,16 +3,16 @@ using System;
 
 public class Main : Node
 {
-	public static int player;
+    public static int player;
 
-	public static int otherPlayer {
-		get {
-			return player = (Main.player == 1) ? 2 : 1;
-		}
-		private set {
-			player = value;
-		}
-	}
+    public static int otherPlayer {
+        get {
+            return player = (Main.player == 1) ? 2 : 1;
+        }
+        private set {
+            player = value;
+        }
+    }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
