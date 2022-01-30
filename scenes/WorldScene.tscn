@@ -43,10 +43,10 @@ tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0
 position = Vector2( 536, -1936 )
 offset = Vector2( 0, -500 )
 zoom = Vector2( 5, 5 )
+smoothing_speed = 10.0
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 3776, 384 )
-type = "light"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager"]
 

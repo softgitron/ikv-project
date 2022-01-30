@@ -26,6 +26,7 @@ public class MoveState : PlayerState
         if (Input.IsActionJustPressed("jump_button"))
         {
             player.velocity.y = -player.jump;
+            player.sprite.Stop();
             player.sprite.Play("jump");
             return new AirState();
         }
@@ -36,11 +37,11 @@ public class MoveState : PlayerState
         {
             player.HandleInteract();
         }
-		
-		if (Input.IsActionJustPressed("crouch_button"))
-		{
-		    player.Drop();
-		}
+
+        if (Input.IsActionJustPressed("crouch_button"))
+        {
+            player.Drop();
+        }
 
         return null;
     }

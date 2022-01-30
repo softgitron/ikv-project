@@ -24,6 +24,7 @@ public class AirState : PlayerState
             if (player.doubleJump > 0)
             {
                 player.velocity.y = -player.jump;
+                player.sprite.Stop();
                 player.sprite.Play("jump");
                 player.doubleJump--;
             }
@@ -38,13 +39,14 @@ public class AirState : PlayerState
 
     public void ExitState(Player player)
     {
-        if (player.type.Equals("light"))
+        if (Main.player == 2)   // If player is light
         {
             player.doubleJump = 1;
         }
     }
     public void EnterState(Player player)
     {
+        player.sprite.Stop();
         player.sprite.Play("jump");
     }
 }
