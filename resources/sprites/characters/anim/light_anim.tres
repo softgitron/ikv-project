@@ -1,42 +1,42 @@
 [gd_resource type="SpriteFrames" load_steps=24 format=2]
 
-[ext_resource path="res://Art/SunnyJumpA4.png" type="Texture" id=1]
-[ext_resource path="res://Art/Sunny.png" type="Texture" id=2]
-[ext_resource path="res://Art/SunnyWalkA10 – kopio.png" type="Texture" id=3]
-[ext_resource path="res://Art/SunnyJumpA1.png" type="Texture" id=4]
-[ext_resource path="res://Art/SunnyWalkA5.png" type="Texture" id=5]
-[ext_resource path="res://Art/SunnyWalkA2.png" type="Texture" id=6]
-[ext_resource path="res://Art/SunnyWalkA6 – kopio.png" type="Texture" id=7]
-[ext_resource path="res://Art/SunnyWalkA7 – kopio.png" type="Texture" id=8]
-[ext_resource path="res://Art/SunnyJumpA2.png" type="Texture" id=9]
-[ext_resource path="res://Art/SunnyJumpA3.png" type="Texture" id=10]
-[ext_resource path="res://Art/SunnyWalkA3.png" type="Texture" id=11]
-[ext_resource path="res://Art/SunnyWalkA4.png" type="Texture" id=12]
-[ext_resource path="res://Art/SunnyWalkA8 – kopio.png" type="Texture" id=13]
-[ext_resource path="res://Art/SunnyWalkA1.png" type="Texture" id=14]
-[ext_resource path="res://Art/SunnyWalkA9 – kopio.png" type="Texture" id=15]
-[ext_resource path="res://Art/SunnyJumpA5.png" type="Texture" id=16]
-[ext_resource path="res://Art/SunnyJumpA10.png" type="Texture" id=17]
-[ext_resource path="res://Art/SunnyJumpA11.png" type="Texture" id=18]
-[ext_resource path="res://Art/SunnyJumpA7.png" type="Texture" id=19]
-[ext_resource path="res://Art/SunnyJumpA9.png" type="Texture" id=20]
-[ext_resource path="res://Art/SunnyJumpA6.png" type="Texture" id=21]
-[ext_resource path="res://Art/SunnyJumpA12.png" type="Texture" id=22]
-[ext_resource path="res://Art/SunnyJumpA8.png" type="Texture" id=23]
+[ext_resource path="res://Art/Sunny/SunnyJumpA1.png" type="Texture" id=1]
+[ext_resource path="res://Art/Sunny/SunnyWalkA6.png" type="Texture" id=2]
+[ext_resource path="res://Art/Sunny/SunnyWalkA9.png" type="Texture" id=3]
+[ext_resource path="res://Art/Sunny/SunnyWalkA1.png" type="Texture" id=4]
+[ext_resource path="res://Art/Sunny/SunnyWalkA7.png" type="Texture" id=5]
+[ext_resource path="res://Art/Sunny/SunnyWalkA10.png" type="Texture" id=6]
+[ext_resource path="res://Art/Sunny/SunnyJumpA5.png" type="Texture" id=7]
+[ext_resource path="res://Art/Sunny/SunnyWalkA4.png" type="Texture" id=8]
+[ext_resource path="res://Art/Sunny/SunnyWalkA2.png" type="Texture" id=9]
+[ext_resource path="res://Art/Sunny/SunnyWalkA8.png" type="Texture" id=10]
+[ext_resource path="res://Art/Sunny/SunnyJumpA9.png" type="Texture" id=11]
+[ext_resource path="res://Art/Sunny/SunnyJumpA4.png" type="Texture" id=12]
+[ext_resource path="res://Art/Sunny/SunnyJumpA7.png" type="Texture" id=13]
+[ext_resource path="res://Art/Sunny/SunnyJumpA12.png" type="Texture" id=14]
+[ext_resource path="res://Art/Sunny/SunnyWalkA3.png" type="Texture" id=15]
+[ext_resource path="res://Art/Sunny/SunnyWalkA5.png" type="Texture" id=16]
+[ext_resource path="res://Art/Sunny/SunnyJumpA6.png" type="Texture" id=17]
+[ext_resource path="res://Art/Sunny/SunnyJumpA3.png" type="Texture" id=18]
+[ext_resource path="res://Art/Sunny/SunnyJumpA8.png" type="Texture" id=19]
+[ext_resource path="res://Art/Sunny/SunnyJumpA11.png" type="Texture" id=20]
+[ext_resource path="res://Art/Sunny/SunnyJumpA10.png" type="Texture" id=21]
+[ext_resource path="res://Art/Sunny/SunnyJumpA2.png" type="Texture" id=22]
+[ext_resource path="res://Art/Sunny/Sunny.png" type="Texture" id=23]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 11 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "jump",
 "speed": 25.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
 "speed": 20.0

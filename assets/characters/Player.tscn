@@ -23,9 +23,9 @@ scale = Vector2( 4.53281, 4.70136 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -44.1058, -24.8128 )
 frames = ExtResource( 1 )
-animation = "walk"
-frame = 5
+animation = "idle"
 
 [node name="Interaction" type="Area2D" parent="."]
 

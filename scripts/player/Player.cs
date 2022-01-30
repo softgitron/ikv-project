@@ -24,6 +24,7 @@ public class Player : KinematicBody2D
 	private PlayerState currentState = new IdleState();
 	private Toggleable toggle;
 	private PositionSync positionSync;
+	private float maxAngle = 0.9f;
 
 	public override void _Ready()
 	{
@@ -70,13 +71,13 @@ public class Player : KinematicBody2D
 	{
 		velocity.y += gravity;
 		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity);
+		velocity = MoveAndSlide(velocity, Vector2.Up, stopOnSlope: true, floorMaxAngle: maxAngle);
 	}
 	public void AirMove(int direction)
 	{
 		velocity.y += gravity;
 		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity, Vector2.Up);
+		velocity = MoveAndSlide(velocity, Vector2.Up, stopOnSlope: true, floorMaxAngle: maxAngle);
 		if (IsOnFloor())
 		{
 			ChangeState(new MoveState());
@@ -91,7 +92,8 @@ public class Player : KinematicBody2D
 	public void HandleInteract()
 	{
 		// IMPORTANT!
-		if (toggle != null) {
+		if (toggle != null)
+		{
 			toggle.Toggle();
 		}
 

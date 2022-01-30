@@ -18,7 +18,7 @@ public class MoveState : PlayerState
         {
             return new IdleState();
         }
-        if (player.velocity.y != 0)
+        if (!player.IsOnFloor())
         {
             return new AirState();
         }
