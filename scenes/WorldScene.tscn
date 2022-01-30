@@ -45,6 +45,7 @@ zoom = Vector2( 5, 5 )
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 3776, 384 )
+type = "light"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager"]
 
