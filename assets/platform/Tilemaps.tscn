@@ -5,3 +5,4 @@
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource( 1 )
 format = 1
+tile_data = PoolIntArray( -1572825, 3, 0, -1245150, 3, 0, -1245145, 3, 0, -720850, 3, 0 )

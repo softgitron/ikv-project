@@ -26,7 +26,27 @@ public class Spectre : RigidBody2D
 	{
 		QueueFree();
 	}
+	
+	private void _on_Area2D_body_entered(object body)
+	{
+		var animSprite2D = GetNode<AnimatedSprite>("AnimatedSprite");
+		string[] mobTypes = animSprite2D.Frames.GetAnimationNames();
+		animSprite2D.Animation = mobTypes[0];
+	}
+	
+	private void _on_Area2D_body_exited(object body)
+	{
+		var animSprite2D = GetNode<AnimatedSprite>("AnimatedSprite");
+		string[] mobTypes = animSprite2D.Frames.GetAnimationNames();
+		animSprite2D.Animation = mobTypes[1];
+	}
 }
+
+
+
+
+
+
 
 
 
