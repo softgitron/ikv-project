@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/rift_light.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 99.5, 171.5 )
+
+[node name="Rift" type="Node2D"]
+
+[node name="AreaRift" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRift"]
+position = Vector2( -25.5, 10.5 )
+scale = Vector2( 1, 1.5 )
+shape = SubResource( 1 )
+
+[node name="RiftLight" type="Sprite" parent="."]
+texture = ExtResource( 1 )

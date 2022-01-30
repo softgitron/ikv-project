@@ -27,6 +27,11 @@
 [ext_resource path="res://Art/ForestLayer1.png" type="Texture" id=25]
 [ext_resource path="res://Art/forestLyaer2.png" type="Texture" id=26]
 [ext_resource path="res://assets/ladder/Ladder.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/toggleDoor/darkBush.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/toggleDoor/treeToggle.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Art/ChurchBG.png" type="Texture" id=25]
+[ext_resource path="res://assets/map/darkPlatform.tscn" type="PackedScene" id=26]
+[ext_resource path="res://assets/Rift.tscn" type="PackedScene" id=27]
 
 [node name="RootNode" type="Node2D"]
 
@@ -57,7 +62,7 @@ smoothing_speed = 10.0
 [node name="TileMap" parent="GameManager/YSort/DarkWorld" instance=ExtResource( 11 )]
 cell_size = Vector2( 2500, 256 )
 show_collision = true
-tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0 )
+tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager/YSort/DarkWorld"]
 
@@ -282,6 +287,31 @@ position = Vector2( 19352, 536 )
 position = Vector2( 19040, 294 )
 
 [node name="Collision" type="Node2D" parent="GameManager/YSort/DarkWorld"]
+[node name="Gravestone20" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 25846, 648 )
+texture = ExtResource( 16 )
+
+[node name="Gravestone21" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 26524, 674 )
+texture = ExtResource( 12 )
+
+[node name="Gravestone22" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 26524, 674 )
+texture = ExtResource( 12 )
+
+[node name="Gravestone23" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 25184, 659 )
+texture = ExtResource( 12 )
+
+[node name="Gravestone24" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 27079, 682 )
+texture = ExtResource( 12 )
+
+[node name="Gravestone25" type="Sprite" parent="GameManager/DarkWorld/Assets"]
+position = Vector2( 27722, 671 )
+texture = ExtResource( 16 )
+
+[node name="Collision" type="Node2D" parent="GameManager/DarkWorld"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameManager/YSort/DarkWorld/Collision"]
 position = Vector2( 5187, 590 )
@@ -291,11 +321,53 @@ polygon = PoolVector2Array( 76, -147, 558, -661, 1016, -630, 1219, -661, 1549, -
 
 [node name="Pressure Plate" parent="GameManager/YSort/DarkWorld" instance=ExtResource( 19 )]
 position = Vector2( 16776, 759 )
+scale = Vector2( 9.44, 15.3914 )
 handleName = "pp_big"
 
 [node name="Gate" parent="GameManager/YSort/DarkWorld/Pressure Plate" instance=ExtResource( 18 )]
 position = Vector2( 1019.07, -52.6486 )
 scale = Vector2( 0.2, 0.2 )
+[node name="Gate" parent="GameManager/DarkWorld/Pressure Plate" instance=ExtResource( 18 )]
+position = Vector2( 607.733, -63.8019 )
+scale = Vector2( 0.3, 0.25 )
+
+[node name="ToggleInteract" parent="GameManager/DarkWorld" instance=ExtResource( 24 )]
+position = Vector2( 28106, 13927 )
+handleName = "darkBush1"
+openablePath = "Bush"
+
+[node name="Bush" parent="GameManager/DarkWorld/ToggleInteract" instance=ExtResource( 23 )]
+position = Vector2( 303.572, -1824.09 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="ChurchBg" type="Sprite" parent="GameManager/DarkWorld"]
+position = Vector2( 42052.7, -3548 )
+scale = Vector2( 4.33836, 7.345 )
+texture = ExtResource( 25 )
+
+[node name="DarkPlatform" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 38532, -113 )
+scale = Vector2( 8.04, 2 )
+
+[node name="DarkPlatform2" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 39067, -882 )
+scale = Vector2( 1.43998, 2 )
+
+[node name="DarkPlatform3" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 39836, -1640 )
+scale = Vector2( 1.43998, 2 )
+
+[node name="DarkPlatform4" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 40616, -2377 )
+scale = Vector2( 1.43998, 2 )
+
+[node name="DarkPlatform5" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 37627, -3214 )
+scale = Vector2( 14.04, 2 )
+
+[node name="Rift" parent="GameManager/DarkWorld" instance=ExtResource( 27 )]
+position = Vector2( 34096, 143 )
+scale = Vector2( 3, 3 )
 
 [node name="LightWorld" type="Node2D" parent="GameManager/YSort"]
 position = Vector2( 0, 15000 )
@@ -422,3 +494,9 @@ centered = false
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 2993, -293.999 )
+[node name="Rift" parent="GameManager/LightWorld" instance=ExtResource( 27 )]
+position = Vector2( 34096, 143 )
+scale = Vector2( 3, 3 )
+
+[node name="Player" parent="GameManager" instance=ExtResource( 5 )]
+position = Vector2( 3500, 384 )

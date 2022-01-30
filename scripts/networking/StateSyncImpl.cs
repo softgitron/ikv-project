@@ -31,12 +31,11 @@ public class StateSyncImpl<T> : TCPAction
     }
 
     public void TCPAction(string parameters) {
-        if (controllObject == null) {
-            return;
-        }
-        
         T jsonFields = JsonConvert.DeserializeObject<T>(parameters);
         state = jsonFields;
-        controllObject.StateTrigger(jsonFields);
+        
+        if (controllObject != null) {
+            controllObject.StateTrigger(jsonFields);
+        }
     }
 }
