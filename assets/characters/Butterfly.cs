@@ -18,4 +18,13 @@ public class Butterfly : RigidBody2D
 //  {
 //      
 //  }
+	private void _on_VisibilityNotifier2D_screen_exited()
+	{
+		QueueFree();
+	}
+
 }
+
+
+
+
