@@ -269,7 +269,7 @@ public class Player : KinematicBody2D, TCPAction
 
 	public void TCPAction(string parameters) {
 		ChangeWorld();
-    }
+	}
 
 	private void ChangeWorld() {
 			if (Main.player == 1 && !wrongWorld) {
