@@ -24,10 +24,12 @@ public class MainMenu: Control
 	}
 
 	private void player1ButtonPressed() {
+		Main.player = 1;
 		SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.WaitingPlayer2);
 	}
 
 	private void player2ButtonPressed() {
+		Main.player = 2;
 		TCPClientImpl.ConnectToServer(AddressTextEdit.Text);
 
 		TCPClientImpl.ConnectedListener = new Action(() => {

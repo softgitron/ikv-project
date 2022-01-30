@@ -43,6 +43,7 @@ public class Player : KinematicBody2D
 			case 2:
 				doubleJump++;
 				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.darkPlayerTheme);
+				this.Position = new Vector2(0, 15000);
 				break;
 			case 1:
 				jump = (int)(0.6 * jump);
