@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Art/Singleckle.png" type="Texture" id=1]
 [ext_resource path="res://Art/ForestTreetacles2nlayer.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://assets/toggleDoor/treeToggle.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Art/ChurchBG.png" type="Texture" id=25]
 [ext_resource path="res://assets/map/darkPlatform.tscn" type="PackedScene" id=26]
+[ext_resource path="res://assets/Rift.tscn" type="PackedScene" id=27]
 
 [node name="RootNode" type="Node2D"]
 
@@ -323,8 +324,8 @@ position = Vector2( 423.136, 133.984 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="ChurchBg" type="Sprite" parent="GameManager/DarkWorld"]
-position = Vector2( 37800, -668 )
-scale = Vector2( 2.212, 3.745 )
+position = Vector2( 42052.7, -3548 )
+scale = Vector2( 4.33836, 7.345 )
 texture = ExtResource( 25 )
 
 [node name="DarkPlatform" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
@@ -343,13 +344,20 @@ scale = Vector2( 1.43998, 2 )
 position = Vector2( 40616, -2377 )
 scale = Vector2( 1.43998, 2 )
 
+[node name="DarkPlatform5" parent="GameManager/DarkWorld" instance=ExtResource( 26 )]
+position = Vector2( 37627, -3214 )
+scale = Vector2( 14.04, 2 )
+
+[node name="Rift" parent="GameManager/DarkWorld" instance=ExtResource( 27 )]
+scale = Vector2( 3, 3 )
+
 [node name="LightWorld" type="Node2D" parent="GameManager"]
 position = Vector2( 0, 15000 )
 
 [node name="TileMap" parent="GameManager/LightWorld" instance=ExtResource( 11 )]
 cell_size = Vector2( 2500, 256 )
 show_collision = true
-tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0 )
+tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0, 196626, 2, 0, 196627, 2, 0 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager/LightWorld"]
 offset = Vector2( 0, 15000 )
@@ -410,5 +418,8 @@ motion_mirroring = Vector2( 10000, 0 )
 [node name="ParallaxForeground" type="ParallaxBackground" parent="GameManager/LightWorld"]
 layer = 1
 
+[node name="Rift" parent="GameManager/LightWorld" instance=ExtResource( 27 )]
+scale = Vector2( 3, 3 )
+
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
-position = Vector2( 3776, 384 )
+position = Vector2( 3500, 384 )

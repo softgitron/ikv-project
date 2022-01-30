@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 
 public class PositionSync : TCPAction
 {
-    private const int yOffset = 100;
+    private const int yOffset = 15500;
+    public const int offsetActive = 2;
 
     private Node2D controllObject;
     private int playerAuthority;
@@ -49,9 +50,9 @@ public class PositionSync : TCPAction
         jsonFields.TryGetValue("positionY", out positionY);
 
         // Apply offset if needed.
-        if (Main.player == 2)
+        if (Main.player == offsetActive)
         {
-            positionY -= yOffset;
+            positionY = yOffset;
         }
 
         controllObject.Position = new Vector2(positionX, positionY);

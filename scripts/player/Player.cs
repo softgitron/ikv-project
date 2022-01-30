@@ -24,6 +24,8 @@ public class Player : KinematicBody2D
 	private PlayerState currentState = new IdleState();
 	private Toggleable toggle;
 	private PositionSync positionSync;
+	private StateSyncImpl<Boolean[]> riftSync;
+	private bool wrongWorld = false;
 	private float maxAngle = 0.9f;
 	private PlayerThemeSync themeSync;
 
@@ -43,7 +45,7 @@ public class Player : KinematicBody2D
 			case 2:
 				doubleJump++;
 				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.darkPlayerTheme);
-				this.Position = new Vector2(0, 15000);
+				this.Position = new Vector2(3500, 15000);
 				break;
 			case 1:
 				jump = (int)(0.6 * jump);
@@ -55,6 +57,7 @@ public class Player : KinematicBody2D
 		}
 		SetPhysicsProcess(true);
 		positionSync = new PositionSync(this, Main.player, "player" + Main.player.ToString());
+		riftSync = new StateSyncImpl<bool[]>(null, new bool[] {false, false}, "playerRift");
 	}
 	public override void _PhysicsProcess(float delta)
 	{
@@ -101,6 +104,20 @@ public class Player : KinematicBody2D
 		if (toggle != null)
 		{
 			toggle.Toggle();
+		}
+
+		bool[] riftState = riftSync.GetState();
+		if (riftState[0] == true && riftState[1] == true) {
+			if (Main.player == 1 && !wrongWorld) {
+				Position = new Vector2(Position.x, Position.y + 15000);
+			} else if (Main.player == 1 && wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y - 15000);
+			} else if (Main.player == 2 && !wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y - 15000);
+			} else if (Main.player == 2 && wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y + 15000);
+			}
+			wrongWorld = !wrongWorld;
 		}
 
 		Item item;
@@ -168,6 +185,12 @@ public class Player : KinematicBody2D
 		{
 			this.themeSync.SetThemeState(true);
 		}
+
+		if (area.Name == "Rift") {
+			bool[] currentState = riftSync.GetState();
+			currentState[Main.player - 1] = true;
+			riftSync.SetState(currentState);
+		}
 	}
 	private void _OnVicinityExited(Area2D area)
 	{
@@ -185,6 +208,12 @@ public class Player : KinematicBody2D
 		if (area.Name == "PlayerThemeSync")
 		{
 			this.themeSync.SetThemeState(false);
+		}
+
+		if (area.Name == "Rift") {
+			bool[] currentState = riftSync.GetState();
+			currentState[Main.player - 1] = false;
+			riftSync.SetState(currentState);
 		}
 	}
 	private void _OnAnimationFinished()
