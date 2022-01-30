@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Art/Singleckle.png" type="Texture" id=1]
 [ext_resource path="res://Art/ForestTreetacles2nlayer.png" type="Texture" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://assets/map/breakableBox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/toggleDoor/darkGate.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/toggleDoor/darkPreasureToggle.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/toggleDoor/treeToggle.tscn" type="PackedScene" id=20]
 
 [node name="RootNode" type="Node2D"]
 
@@ -281,12 +280,3 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 3776, 384 )
-
-[node name="ToggleInteract" parent="GameManager" instance=ExtResource( 20 )]
-position = Vector2( 30452, -1124 )
-handleName = "darkGate2"
-openablePath = "Gate"
-
-[node name="Gate" parent="GameManager/ToggleInteract" instance=ExtResource( 18 )]
-position = Vector2( 311.801, 165.234 )
-scale = Vector2( 0.3, 0.3 )
