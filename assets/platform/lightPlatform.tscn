@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/platform/lightPlatform.tres" type="TileSet" id=1]
+
+[node name="PlatformLight" type="Node2D"]
+
+[node name="TileMap2" type="TileMap" parent="."]
+scale = Vector2( 0.3, 0.3 )
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -327693, 0, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMap2"]
+scale = Vector2( 3.33333, 3.33333 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap2/StaticBody2D"]
+position = Vector2( -4, -1 )
+polygon = PoolVector2Array( 46, -40, 225, -43, 218, -24, 5, -20, -221, -17, -217, -38, -75.0001, -38 )
+one_way_collision = true

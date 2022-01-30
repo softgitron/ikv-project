@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/scenes/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://scenes/AudioManager.tscn" type="PackedScene" id=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1Button" type="Button" parent="."]
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.45
+text = "Player 1 (host)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddressTextEdit" type="TextEdit" parent="."]
+anchor_left = 0.4
+anchor_top = 0.65
+anchor_right = 0.6
+anchor_bottom = 0.7
+margin_bottom = 10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "localhost"
+
+[node name="Player2Button" type="Button" parent="."]
+anchor_left = 0.4
+anchor_top = 0.55
+anchor_right = 0.6
+anchor_bottom = 0.6
+text = "Player 2 (join)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioManager" parent="." instance=ExtResource( 2 )]
