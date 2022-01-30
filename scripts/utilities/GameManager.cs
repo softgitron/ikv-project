@@ -12,12 +12,12 @@ public class GameManager : Node
 		player = (Player)GetNode("Player");
 		camera = (MainCamera)GetNode("MainCamera");
 		debug = (DebugOverlay)GetNode("UILayer/DebugOverlay");
+		audioSource = (AudioSourceImplementation)GetNode("AudioManager");
 
 		debug.AddStat("Fps: ", this, "GetFps", true);
 		debug.AddStat("Nearby Items: ", player, "GetSurroundingItems", true);
 		debug.AddStat("Static Memory Usage: ", this, "GetStaticMemory", true);
 		debug.AddStat("Dynamic Memory usage: ", this, "GetDynamicMemory", true);
-		audioSource = (AudioSourceImplementation)GetNode("AudioManager");
 
 		camera.Initialize(player);
 		player.Initialize();

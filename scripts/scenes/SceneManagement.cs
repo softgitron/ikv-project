@@ -9,14 +9,12 @@ public class SceneManagement : Node
         Player1,
         Player2,
         WaitingPlayer2,
-        DarkWorld,
-        LightWorld
+        World
     }
 
     public static PackedScene CurrentScene {get; private set;}
     private static Node currentSceneNode;
     private static SceneManagement instance;
-    private Node sceneNode;
 
     private SceneManagement() {
         
@@ -25,8 +23,6 @@ public class SceneManagement : Node
     public override void _Ready()
     {
         instance = this;
-
-        sceneNode = GetNode("SceneNode");
 
         // Change immidiately to main menu.
         ChangeScene(SceneManagement.Scenes.MainMenu);
@@ -37,6 +33,13 @@ public class SceneManagement : Node
     }
 
     public void ChangeScene(Scenes scene) {
+        Node sceneNode = GetNode("SceneNode");
+
+        string newSceneName = $"res://scenes/{scene.ToString()}Scene.tscn";
+        if (CurrentScene != null && CurrentScene.ResourcePath == newSceneName) {
+            return;
+        }
+
         // Remove previous scene.
         if (CurrentScene != null) {
             sceneNode.RemoveChild(currentSceneNode);
@@ -44,7 +47,7 @@ public class SceneManagement : Node
         }
 
         // Load new scene.
-        CurrentScene = (PackedScene)ResourceLoader.Load($"res://scenes/{scene.ToString()}Scene.tscn");
+        CurrentScene = (PackedScene)ResourceLoader.Load(newSceneName);
         currentSceneNode = CurrentScene.Instance();
         sceneNode.AddChild(currentSceneNode);
     }
