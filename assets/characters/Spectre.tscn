@@ -12,15 +12,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "Normal",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Attack",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "Normal",
+"speed": 5.0
 } ]
 
 [node name="Spectre" type="RigidBody2D"]
@@ -43,4 +43,11 @@ playing = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 50, 119, 239, 410, 230, 684, -304, 684, -302, 366, -232, 53, -221, -71, -195, -179, -134, -230, -75, -335, 13, -385, 88, -287, 126, -196, 245, -211, 310, -128, 290, 111 )
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 18, -421, -409, -650, -776, -653, -978, -290, -1035, 154, -1005, 615, -759, 793, -261, 561, -140, 443, 950, 689, 1683, 685, 2282, 396, 2214, -441, 1807, -943, 1417, -1101, 1061, -1081, 738, -828, 532, -482, 280, -334 )
+
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

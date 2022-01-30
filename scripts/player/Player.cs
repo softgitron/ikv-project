@@ -46,12 +46,12 @@ public class Player : KinematicBody2D
 		positionSync = new PositionSync(this, Main.player, "player" + Main.player.ToString());
 	}
 
-      PlayerState newState = currentState.ProcessState(this);
-      if (newState != null)
-      {
-          ChangeState(newState);
-      }
-      GD.Print(currentState);
+	  PlayerState newState = currentState.ProcessState(this);
+	  if (newState != null)
+	  {
+		  ChangeState(newState);
+	  }
+	  GD.Print(currentState);
 
 		if (ladders > 0)
 		{
@@ -61,48 +61,48 @@ public class Player : KinematicBody2D
 
   public void GroundMove(int direction)
   {
-      velocity.y += gravity;
-      velocity.x = maxSpeed * direction;
-      velocity = MoveAndSlide(velocity);
+	  velocity.y += gravity;
+	  velocity.x = maxSpeed * direction;
+	  velocity = MoveAndSlide(velocity);
   }
   public void AirMove(int direction)
   {
-      velocity.y += gravity;
-      velocity.x = maxSpeed * direction;
-      velocity = MoveAndSlide(velocity, Vector2.Up);
-      if (IsOnFloor())
-      {
-          ChangeState(new MoveState());
-      }
+	  velocity.y += gravity;
+	  velocity.x = maxSpeed * direction;
+	  velocity = MoveAndSlide(velocity, Vector2.Up);
+	  if (IsOnFloor())
+	  {
+		  ChangeState(new MoveState());
+	  }
   }
 
   public void HandleInteract()
   {
-      Item item;
-      if (pickedItem != null)
-      {
-          DropItem();
-      }
-      else if ((item = (Item)surroundingInteractives.FirstOrDefault(x => x is Item)) != null)
-      {
-          PickItem(item);
-      }
+	  Item item;
+	  if (pickedItem != null)
+	  {
+		  DropItem();
+	  }
+	  else if ((item = (Item)surroundingInteractives.FirstOrDefault(x => x is Item)) != null)
+	  {
+		  PickItem(item);
+	  }
   }
 
   public void HandleLadders()
   {
-      if (Input.IsActionPressed("jump_button"))
-      {
-          velocity.y = -maxSpeed;
-      }
-      else if (Input.IsActionPressed("crouch_button"))
-      {
-          velocity.y = maxSpeed;
-      }
-      else
-      {
-          velocity.y = 0;
-      }
+	  if (Input.IsActionPressed("jump_button"))
+	  {
+		  velocity.y = -maxSpeed;
+	  }
+	  else if (Input.IsActionPressed("crouch_button"))
+	  {
+		  velocity.y = maxSpeed;
+	  }
+	  else
+	  {
+		  velocity.y = 0;
+	  }
   }
 
 	private void HandleLadders()
@@ -123,15 +123,15 @@ public class Player : KinematicBody2D
 
   private void ChangeState(PlayerState playerState)
   {
-      playerState.ExitState(this);
-      stateStack.Insert(0, playerState);
-      currentState = stateStack[0];
+	  playerState.ExitState(this);
+	  stateStack.Insert(0, playerState);
+	  currentState = stateStack[0];
   }
 
   private void moveToPreviousState()
   {
-      stateStack.RemoveAt(0);
-      currentState = stateStack[0];
+	  stateStack.RemoveAt(0);
+	  currentState = stateStack[0];
   }
 
 	// Handles interacting with items.
