@@ -16,6 +16,7 @@ public class Player : KinematicBody2D
 	private int gravity = 100;
 	public AnimatedSprite sprite;
 	public List<Area2D> surroundingInteractives = new List<Area2D>();
+	private List<Hittable> closeByAreas = new List<Hittable>();
 	private Item pickedItem;
 	public int ladders = 0;
 	public int doubleJump = 0;
@@ -66,6 +67,11 @@ public class Player : KinematicBody2D
 		if (newState != null)
 		{
 			ChangeState(newState);
+		}
+
+		if (Input.IsActionJustPressed("attack_button") && Main.player == 1)
+		{
+			Attack();
 		}
 
 		if (ladders > 0)
@@ -142,6 +148,23 @@ public class Player : KinematicBody2D
 		}
 	}
 
+	private void Attack()
+	{
+		GD.Print("Attacking");
+		sprite.Stop();
+		sprite.Play("attack");
+		foreach (Hittable area in closeByAreas)
+		{
+			if (!IsInstanceValid(area))
+			{
+				closeByAreas.Remove(area);
+				return;
+			}
+			GD.Print(string.Format("Attack: {0}", area.Name));
+			area.Hit();
+		}
+	}
+
 
 	private void ChangeState(PlayerState playerState)
 	{
@@ -209,6 +232,20 @@ public class Player : KinematicBody2D
 			bool[] currentState = riftSync.GetState();
 			currentState[Main.player - 1] = false;
 			riftSync.SetState(currentState);
+		}
+	}
+	private void _AttackAreaEntered(object area)
+	{
+		if (area is Hittable hittable)
+		{
+			closeByAreas.Add(hittable);
+		}
+	}
+	private void _AttackAreaExited(object area)
+	{
+		if (area is Hittable hittable)
+		{
+			closeByAreas.Remove(hittable);
 		}
 	}
 	private void _OnAnimationFinished()

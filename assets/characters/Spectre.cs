@@ -13,32 +13,32 @@ public class Spectre : RigidBody2D
 		var animSprite2D = GetNode<AnimatedSprite>("AnimatedSprite");
 		animSprite2D.Playing = true;
 		string[] mobTypes = animSprite2D.Frames.GetAnimationNames();
-		animSprite2D.Animation = mobTypes[1];
-		
+		animSprite2D.Animation = mobTypes[0];
+
 	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+	//  public override void _Process(float delta)
+	//  {
+	//      
+	//  }
 	private void _on_VisibilityNotifier2D_screen_exited()
 	{
 		QueueFree();
 	}
-	
+
 	private void _on_Area2D_body_entered(object body)
 	{
 		var animSprite2D = GetNode<AnimatedSprite>("AnimatedSprite");
 		string[] mobTypes = animSprite2D.Frames.GetAnimationNames();
-		animSprite2D.Animation = mobTypes[0];
+		animSprite2D.Animation = mobTypes[1];
 	}
-	
+
 	private void _on_Area2D_body_exited(object body)
 	{
 		var animSprite2D = GetNode<AnimatedSprite>("AnimatedSprite");
 		string[] mobTypes = animSprite2D.Frames.GetAnimationNames();
-		animSprite2D.Animation = mobTypes[1];
+		animSprite2D.Animation = mobTypes[0];
 	}
 }
 
