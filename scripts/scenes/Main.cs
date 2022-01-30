@@ -7,7 +7,7 @@ public class Main : Node
 
 	public static int otherPlayer {
 		get {
-			return player = (Main.player == 1) ? 2 : 1;
+			return (Main.player == 1) ? 2 : 1;
 		}
 		private set {
 			player = value;
