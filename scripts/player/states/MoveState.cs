@@ -36,6 +36,11 @@ public class MoveState : PlayerState
         {
             player.HandleInteract();
         }
+		
+		if (Input.IsActionJustPressed("crouch_button"))
+		{
+		    player.Drop();
+		}
 
         return null;
     }
