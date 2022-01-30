@@ -5,33 +5,24 @@ using System.Collections.Generic;
 
 public class Player : KinematicBody2D
 {
-	private Vector2 velocity = Vector2.Zero;
-	[Export]
-	private int maxSpeed = 100;
-	[Export]
-	private int jump = 1500;
-	[Export]
-	private float acceleration = 100;
-	[Export]
-	private int gravity = 100;
-	private Sprite sprite;
-	public List<Area2D> surroundingInteractives = new List<Area2D>();
-	private Item pickedItem;
-	public int ladders = 0;
-	private string type = "light";
-	private int doubleJump = 0;
-	private int attack = 0;
-
-	private string[] states =
-	{
-		"idle",
-		"move",
-		"air"
-	};
-	private List<string> stateStack = new List<string>();
-	private string currentState = "idle";
-	private Toggleable toggle;
-	private PositionSync positionSync;
+  public Vector2 velocity = Vector2.Zero;
+  [Export]
+  private int maxSpeed = 100;
+  [Export]
+  public int jump = 1500;
+  [Export]
+  private float acceleration = 100;
+  [Export]
+  private int gravity = 100;
+  public Sprite sprite;
+  public List<Area2D> surroundingInteractives = new List<Area2D>();
+  private Item pickedItem;
+  public int ladders = 0;
+  public string type = "light";
+  public int doubleJump = 0;
+  private int attack = 0;
+  private List<PlayerState> stateStack = new List<PlayerState>();
+  private PlayerState currentState = new IdleState();
 
 	public override void _Ready()
 	{
@@ -55,25 +46,12 @@ public class Player : KinematicBody2D
 		positionSync = new PositionSync(this, Main.player, "player" + Main.player.ToString());
 	}
 
-	public override void _PhysicsProcess(float delta)
-	{
-		positionSync.Update();
-		switch (currentState)
-		{
-			case "idle":
-				HandleIdleState(delta);
-				break;
-			case "move":
-				HandleMoveState(delta);
-				break;
-			case "air":
-				HandleAirState(delta);
-				break;
-			default:
-				GD.Print("Kyrpä");
-				break;
-		}
-		GD.Print(currentState);
+      PlayerState newState = currentState.ProcessState(this);
+      if (newState != null)
+      {
+          ChangeState(newState);
+      }
+      GD.Print(currentState);
 
 		if (ladders > 0)
 		{
@@ -81,128 +59,51 @@ public class Player : KinematicBody2D
 		}
 	}
 
-	private void GroundMove(int direction, float delta)
-	{
-		velocity.y += gravity;
-		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity);
-	}
-	private void AirMove(int direction, float delta)
-	{
-		velocity.y += gravity; // TODO! delta kiinni currentSpeediin
-		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity, Vector2.Up);
-		if (IsOnFloor())
-		{
-			ChangeState("move");
-		}
-	}
+  public void GroundMove(int direction)
+  {
+      velocity.y += gravity;
+      velocity.x = maxSpeed * direction;
+      velocity = MoveAndSlide(velocity);
+  }
+  public void AirMove(int direction)
+  {
+      velocity.y += gravity;
+      velocity.x = maxSpeed * direction;
+      velocity = MoveAndSlide(velocity, Vector2.Up);
+      if (IsOnFloor())
+      {
+          ChangeState(new MoveState());
+      }
+  }
 
-	private void HandleIdleState(float delta)
-	{
-		if (Input.IsActionJustPressed("left_button") || Input.IsActionJustPressed("right_button"))
-		{
-			ChangeState("move");
-			return;
-		}
+  public void HandleInteract()
+  {
+      Item item;
+      if (pickedItem != null)
+      {
+          DropItem();
+      }
+      else if ((item = (Item)surroundingInteractives.FirstOrDefault(x => x is Item)) != null)
+      {
+          PickItem(item);
+      }
+  }
 
-		if (Input.IsActionJustPressed("jump_button"))
-		{
-			velocity.y -= jump;
-			ChangeState("air");
-			return;
-		}
-
-		if (Input.IsActionJustPressed("interact_button"))
-		{
-			HandleInteract();
-		}
-		if (velocity.y != 0)
-		{
-			ChangeState("air");
-		}
-		GroundMove(0, 0);
-	}
-	private void HandleMoveState(float delta)
-	{
-		int direction = Math.Sign(Input.GetActionStrength("right_button") - Input.GetActionStrength("left_button"));
-		if (direction > 0)
-		{
-			sprite.FlipH = false;
-		}
-		else if (direction < 0)
-		{
-			sprite.FlipH = true;
-		}
-		else
-		{
-			ChangeState("idle");
-			return;
-		}
-		if (velocity.y != 0)
-		{
-			ChangeState("air");
-			return;
-		}
-
-		if (Input.IsActionJustPressed("jump_button"))
-		{
-			velocity.y -= jump;
-			ChangeState("air");
-			return;
-		}
-
-		GroundMove(direction, delta);
-
-		if (Input.IsActionJustPressed("interact_button"))
-		{
-			HandleInteract();
-		}
-
-	}
-	private void HandleAirState(float delta)
-	{
-		int direction = Math.Sign(Input.GetActionStrength("right_button") - Input.GetActionStrength("left_button"));
-		if (direction > 0)
-		{
-			sprite.FlipH = false;
-		}
-		else if (direction < 0)
-		{
-			sprite.FlipH = true;
-		}
-		AirMove(direction, delta);
-		if (Input.IsActionJustPressed("interact_button"))
-		{
-			HandleInteract();
-		}
-		if (Input.IsActionJustPressed("jump_button"))
-		{
-			if (doubleJump > 0)
-			{
-				velocity.y -= jump;
-				doubleJump--;
-			}
-		}
-	}
-
-	private void HandleInteract()
-	{
-		if (toggle != null)
-		{
-			toggle.Toggle();
-		}
-
-		Item item;
-		if (pickedItem != null)
-		{
-			DropItem();
-		}
-		else if ((item = (Item)surroundingInteractives.FirstOrDefault(x => x is Item)) != null)
-		{
-			PickItem(item);
-		}
-	}
+  public void HandleLadders()
+  {
+      if (Input.IsActionPressed("jump_button"))
+      {
+          velocity.y = -maxSpeed;
+      }
+      else if (Input.IsActionPressed("crouch_button"))
+      {
+          velocity.y = maxSpeed;
+      }
+      else
+      {
+          velocity.y = 0;
+      }
+  }
 
 	private void HandleLadders()
 	{
@@ -220,49 +121,18 @@ public class Player : KinematicBody2D
 		}
 	}
 
+  private void ChangeState(PlayerState playerState)
+  {
+      playerState.ExitState(this);
+      stateStack.Insert(0, playerState);
+      currentState = stateStack[0];
+  }
 
-	private void ChangeState(string stateName)
-	{
-		ExitState(currentState);
-		switch (stateName)
-		{
-			case "idle":
-				stateStack.Insert(0, "idle");
-				break;
-			case "move":
-				stateStack.Insert(0, "move");
-				break;
-			case "air":
-				stateStack.Insert(0, "air");
-				break;
-			case "previous":
-				stateStack.RemoveAt(0);
-				currentState = stateStack[0];
-				break;
-			default:
-				GD.Print("Error while changing state");
-				break;
-		}
-		currentState = stateStack[0];
-	}
-	private void ExitState(string state)
-	{
-		switch (state)
-		{
-			case "idle":
-				break;
-			case "move":
-				break;
-			case "air":
-				if (type.Equals("light"))
-				{
-					doubleJump = 1;
-				}
-				break;
-			default:
-				break;
-		}
-	}
+  private void moveToPreviousState()
+  {
+      stateStack.RemoveAt(0);
+      currentState = stateStack[0];
+  }
 
 	// Handles interacting with items.
 	private void _OnVicinityEntered(Area2D area)
