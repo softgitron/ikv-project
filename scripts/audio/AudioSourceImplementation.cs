@@ -23,7 +23,7 @@ public class AudioSourceImplementation : Node, AudioSource
 	private const int lightPlayerThemeVolume = -4;
 	private const int darkPlayerThemeVolume = 0;
 	private const int lightWorldThemeVolume = -5;
-	private const int darkWorldThemeVolume = -3;
+	private const int darkWorldThemeVolume = -1;
 
 	private const int defaultFadeTimeMilliseconds = 1000;
 

@@ -118,6 +118,7 @@ public class Player : KinematicBody2D
     }
 
 
+
     private void ChangeState(PlayerState playerState)
     {
         playerState.ExitState(this);
@@ -145,14 +146,24 @@ public class Player : KinematicBody2D
         {
             surroundingInteractives.Add(item);
         }
+
+        if (area.Name.EndsWith("Theme"))
+        {
+            ((GameManager) GetParent()).audioSource.FadeInTrack(area.Name);
+        }
     }
     private void _OnVicinityExited(Area2D area)
-    {
+    {       
         if (area == toggle)
         {
-            toggle = null;
+          toggle = null;
         }
         surroundingInteractives.Remove(area);
+
+        if (area.Name.EndsWith("Theme"))
+        {
+          ((GameManager) GetParent()).audioSource.FadeOutTrack(area.Name);
+        }
     }
     private void _OnAnimationFinished()
     {
@@ -174,4 +185,5 @@ public class Player : KinematicBody2D
     {
         return surroundingInteractives;
     }
+	}
 }

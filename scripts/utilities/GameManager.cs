@@ -6,8 +6,10 @@ public class GameManager : Node
 	private Player player;
 	private MainCamera camera;
 	private DebugOverlay debug;
+  
 	private AudioSource audioSource;
 	private SpriteFrames lightFrames, darkFrames;
+  
 	public override void _Ready()
 	{
 		lightFrames = (SpriteFrames)ResourceLoader.Load("res://resources/sprites/characters/anim/light_anim.tres");
@@ -24,7 +26,7 @@ public class GameManager : Node
 		debug.AddStat("Dynamic Memory usage: ", this, "GetDynamicMemory", true);
 
 		camera.Initialize(player);
-
+    
 		switch (player.type)
 		{
 			case "light":
