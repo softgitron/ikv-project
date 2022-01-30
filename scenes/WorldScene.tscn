@@ -275,6 +275,7 @@ polygon = PoolVector2Array( 76, -147, 558, -661, 1016, -630, 1219, -661, 1549, -
 
 [node name="Pressure Plate" parent="GameManager" instance=ExtResource( 19 )]
 position = Vector2( 16776, 759 )
+handleName = "pp_big"
 
 [node name="Gate" parent="GameManager/Pressure Plate" instance=ExtResource( 18 )]
 position = Vector2( 1019.07, -52.6486 )
