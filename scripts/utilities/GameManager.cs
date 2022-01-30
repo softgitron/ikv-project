@@ -6,9 +6,13 @@ public class GameManager : Node
 	private Player player;
 	private MainCamera camera;
 	private DebugOverlay debug;
+	private SpriteFrames lightFrames, darkFrames;
 	public AudioSource audioSource;
 	public override void _Ready()
 	{
+		lightFrames = (SpriteFrames)ResourceLoader.Load("res://resources/sprites/characters/anim/light_anim.tres");
+		darkFrames = (SpriteFrames)ResourceLoader.Load("res://resources/sprites/characters/anim/dark_anim.tres");
+
 		player = (Player)GetNode("Player");
 		camera = (MainCamera)GetNode("MainCamera");
 		debug = (DebugOverlay)GetNode("UILayer/DebugOverlay");
@@ -20,14 +24,20 @@ public class GameManager : Node
 		debug.AddStat("Dynamic Memory usage: ", this, "GetDynamicMemory", true);
 
 		camera.Initialize(player);
-		player.Initialize();
-		if (player.type == "light")
+
+		switch (Main.player)
 		{
-			audioSource.FadeInTrack(AudioSourceImplementation.lightPlayerTheme, 0);
-		}
-		else
-		{
-			audioSource.FadeInTrack(AudioSourceImplementation.darkPlayerTheme, 0);
+			case 2:
+				audioSource.FadeInTrack(AudioSourceImplementation.lightPlayerTheme, 0);
+				player.Initialize(lightFrames);
+				break;
+			case 1:
+				audioSource.FadeInTrack(AudioSourceImplementation.darkPlayerTheme, 0);
+				player.Initialize(darkFrames);
+				break;
+			default:
+				GD.Print("Error while choosing player frames.");
+				break;
 		}
 	}
 
