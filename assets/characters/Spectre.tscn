@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/characters/Spectre.cs" type="Script" id=1]
 [ext_resource path="res://Art/MonsterA5.png" type="Texture" id=2]
@@ -23,15 +23,16 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 251.5, 185.25 )
-
 [node name="Spectre" type="RigidBody2D"]
+position = Vector2( 492, 245 )
 collision_mask = 0
-gravity_scale = 0.0
+mass = 100.0
+gravity_scale = 50.0
 script = ExtResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -9.99997, 57 )
+scale = Vector2( 27.8, 47.3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -40,13 +41,6 @@ animation = "Normal"
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 50, 119, -60, 197, -116, 318, -191, 84, -141, -118, -141, -113, -116, -188, -113, -186, -75, -335, 13, -385, 88, -287, 126, -196, 245, -211, 310, -128, 290, 111 )
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( -7, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 27, 382 )
-shape = SubResource( 2 )
+polygon = PoolVector2Array( 50, 119, 239, 410, 230, 684, -304, 684, -302, 366, -232, 53, -221, -71, -195, -179, -134, -230, -75, -335, 13, -385, 88, -287, 126, -196, 245, -211, 310, -128, 290, 111 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
