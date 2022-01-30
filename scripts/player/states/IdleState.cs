@@ -20,6 +20,11 @@ public class IdleState : PlayerState
 			player.HandleInteract();
 		}
 		
+		if (Input.IsActionJustPressed("crouch_button"))
+		{
+			player.Drop();
+		}
+		
 		player.GroundMove(0);
 		
 		if (player.velocity.y != 0)

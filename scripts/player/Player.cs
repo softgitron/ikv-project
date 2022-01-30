@@ -80,6 +80,11 @@ public class Player : KinematicBody2D
 		}
 	}
 
+	public void Drop()
+	{
+		Position = new Vector2(Position.x, Position.y + 1);
+	}
+
 	public void HandleInteract()
 	{
 		Item item;
