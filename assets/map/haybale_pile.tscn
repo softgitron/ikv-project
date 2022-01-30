@@ -4,13 +4,13 @@
 [ext_resource path="res://Art/haybale_side.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 468.25, 258.75 )
+extents = Vector2( 468.25, 255.875 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 217.158, 83.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 118, 89.25 )
+extents = Vector2( 118, 84.625 )
 
 [node name="Haybalepile" type="Node2D"]
 
@@ -25,9 +25,10 @@ offset = Vector2( -105, 0 )
 texture = ExtResource( 2 )
 
 [node name="Sprite3" type="Sprite" parent="StaticBody2D"]
-position = Vector2( -645, -83 )
-rotation = -0.466549
+position = Vector2( -318.882, -242.316 )
+rotation = -0.76035
 texture = ExtResource( 2 )
+offset = Vector2( -298.599, -133.137 )
 
 [node name="Sprite4" type="Sprite" parent="StaticBody2D"]
 position = Vector2( -294, -373 )
@@ -65,16 +66,28 @@ texture = ExtResource( 1 )
 offset = Vector2( -105, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 43, -171 )
+position = Vector2( 43, -168.125 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -645, -74 )
-rotation = -0.450895
+position = Vector2( -631, -126 )
+rotation = -0.75527
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 62, -521 )
+position = Vector2( 62, -516.375 )
 shape = SubResource( 3 )
+
+[node name="Sprite11" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 827, 190 )
+rotation = 0.544969
+scale = Vector2( 1, 1 )
+texture = ExtResource( 2 )
+offset = Vector2( -298.599, -133.137 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 640, -73 )
+rotation = 0.563803
+shape = SubResource( 2 )
 one_way_collision = true
