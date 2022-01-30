@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/sprites/characters/anim/dark_anim.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.1789, 65.513 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 85.5035, 136.533 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 128, 48.5 )
@@ -27,6 +30,14 @@ position = Vector2( -44.1058, -24.8128 )
 frames = ExtResource( 1 )
 animation = "idle"
 
+[node name="Attack" type="Area2D" parent="AnimatedSprite"]
+position = Vector2( 44.3267, 76.8123 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/Attack"]
+position = Vector2( 125.431, -28.0606 )
+shape = SubResource( 3 )
+
 [node name="Interaction" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
@@ -34,5 +45,7 @@ position = Vector2( -31.031, 228.134 )
 shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_OnAnimationFinished"]
+[connection signal="body_entered" from="AnimatedSprite/Attack" to="." method="_AttackAreaEntered"]
+[connection signal="body_exited" from="AnimatedSprite/Attack" to="." method="_AttackAreaExited"]
 [connection signal="area_entered" from="Interaction" to="." method="_OnVicinityEntered"]
 [connection signal="area_exited" from="Interaction" to="." method="_OnVicinityExited"]

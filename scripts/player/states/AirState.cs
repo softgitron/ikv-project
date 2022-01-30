@@ -8,11 +8,11 @@ public class AirState : PlayerState
         int direction = Math.Sign(Input.GetActionStrength("right_button") - Input.GetActionStrength("left_button"));
         if (direction > 0)
         {
-            player.sprite.FlipH = false;
+            player.sprite.Scale = new Vector2(1, 1);
         }
         else if (direction < 0)
         {
-            player.sprite.FlipH = true;
+            player.sprite.Scale = new Vector2(-1, 1);
         }
         player.AirMove(direction);
         if (Input.IsActionJustPressed("interact_button"))
