@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/toggleDoor/toggle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Art/DarkForestParaalxSecondLayer.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://resources/sprites/background/test/mountain.png" type="Texture" id=11]
 [ext_resource path="res://assets/toggleDoor/door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/utilities/Camera.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/utilities/DebugOverlay.tscn" type="PackedScene" id=14]
 
 [node name="RootNode" type="Node2D"]
 
@@ -113,4 +114,10 @@ defaultState = true
 
 [node name="Door" parent="GameManager/Toggle" instance=ExtResource( 12 )]
 position = Vector2( 691.1, -1.80002 )
-scale = Vector2( 1, 1 )
+
+[node name="UILayer" type="CanvasLayer" parent="GameManager"]
+
+[node name="DebugOverlay" parent="GameManager/UILayer" instance=ExtResource( 14 )]
+margin_left = 50.0
+margin_top = 50.0
+text = "Testiiiii"
