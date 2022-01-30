@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public class Player : KinematicBody2D
+public class Player : KinematicBody2D, TCPAction
 {
 	public Vector2 velocity = Vector2.Zero;
 	[Export]
@@ -59,6 +59,7 @@ public class Player : KinematicBody2D
 		SetPhysicsProcess(true);
 		positionSync = new PositionSync(this, Main.player, "player" + Main.player.ToString());
 		riftSync = new StateSyncImpl<bool[]>(null, new bool[] {false, false}, "playerRift");
+		TCPImpl.RegisterListener("swap", this);
 	}
 	public override void _PhysicsProcess(float delta)
 	{
@@ -114,11 +115,8 @@ public class Player : KinematicBody2D
 
 		bool[] riftState = riftSync.GetState();
 		if (riftState[0] == true && riftState[1] == true) {
-			Vector2  otherPosition = positionSync.controllObject.Position;
-			Vector2 ownPosition = Position;
-			Position = otherPosition;
-			positionSync.controllObject.Position = ownPosition;
-			positionSync.Swap();
+			ChangeWorld();
+			TCPImpl.SendCommand("swap", null);
 		}
 
 		Item item;
@@ -204,7 +202,7 @@ public class Player : KinematicBody2D
 			this.themeSync.SetThemeState(true);
 		}
 
-		if (area.Name.EndsWith("Rift")) {
+		if (area.Name.EndsWith("AreaRift")) {
 			bool[] currentState = riftSync.GetState();
 			currentState[Main.player - 1] = true;
 			riftSync.SetState(currentState);
@@ -228,7 +226,7 @@ public class Player : KinematicBody2D
 			this.themeSync.SetThemeState(false);
 		}
 
-		if (area.Name == "Rift") {
+		if (area.Name == "AreaRift") {
 			bool[] currentState = riftSync.GetState();
 			currentState[Main.player - 1] = false;
 			riftSync.SetState(currentState);
@@ -267,5 +265,22 @@ public class Player : KinematicBody2D
 	public List<Area2D> GetSurroundingItems()
 	{
 		return surroundingInteractives;
+	}
+
+	public void TCPAction(string parameters) {
+		ChangeWorld();
+    }
+
+	private void ChangeWorld() {
+			if (Main.player == 1 && !wrongWorld) {
+				Position = new Vector2(Position.x, Position.y + 15000);
+			} else if (Main.player == 1 && wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y - 15000);
+			} else if (Main.player == 2 && !wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y - 15000);
+			} else if (Main.player == 2 && wrongWorld) { 
+				Position = new Vector2(Position.x, Position.y + 15000);
+			}
+			wrongWorld = !wrongWorld;
 	}
 }

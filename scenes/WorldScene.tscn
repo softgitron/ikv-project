@@ -315,12 +315,12 @@ position = Vector2( 607.733, -63.8019 )
 scale = Vector2( 0.3, 0.25 )
 
 [node name="ToggleInteract" parent="GameManager/DarkWorld" instance=ExtResource( 24 )]
-position = Vector2( 27564, -1083 )
+position = Vector2( 28106, 13927 )
 handleName = "darkBush1"
 openablePath = "Bush"
 
 [node name="Bush" parent="GameManager/DarkWorld/ToggleInteract" instance=ExtResource( 23 )]
-position = Vector2( 423.136, 133.984 )
+position = Vector2( 303.572, -1824.09 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="ChurchBg" type="Sprite" parent="GameManager/DarkWorld"]
@@ -349,6 +349,7 @@ position = Vector2( 37627, -3214 )
 scale = Vector2( 14.04, 2 )
 
 [node name="Rift" parent="GameManager/DarkWorld" instance=ExtResource( 27 )]
+position = Vector2( 34096, 143 )
 scale = Vector2( 3, 3 )
 
 [node name="LightWorld" type="Node2D" parent="GameManager"]
@@ -419,6 +420,7 @@ motion_mirroring = Vector2( 10000, 0 )
 layer = 1
 
 [node name="Rift" parent="GameManager/LightWorld" instance=ExtResource( 27 )]
+position = Vector2( 34096, 143 )
 scale = Vector2( 3, 3 )
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
