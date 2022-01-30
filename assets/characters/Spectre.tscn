@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/characters/Spectre.cs" type="Script" id=1]
+[ext_resource path="res://Art/MonsterA5.png" type="Texture" id=2]
+[ext_resource path="res://Art/MonsterA1.png" type="Texture" id=3]
+[ext_resource path="res://Art/MonsterA2.png" type="Texture" id=4]
+[ext_resource path="res://Art/MonsterA6.png" type="Texture" id=5]
+[ext_resource path="res://Art/MonsterA7.png" type="Texture" id=6]
+[ext_resource path="res://Art/MonsterA8 – kopio.png" type="Texture" id=7]
+[ext_resource path="res://Art/MonsterA3.png" type="Texture" id=8]
+[ext_resource path="res://Art/MonsterA4.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "Normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 251.5, 185.25 )
+
+[node name="Spectre" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "Normal"
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 50, 119, -60, 197, -116, 318, -191, 84, -141, -118, -141, -113, -116, -188, -113, -186, -75, -335, 13, -385, 88, -287, 126, -196, 245, -211, 310, -128, 290, 111 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( -7, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 27, 382 )
+shape = SubResource( 2 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
