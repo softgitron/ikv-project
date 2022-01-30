@@ -28,15 +28,14 @@ public class AudioSourceImplementation : Node, AudioSource
 	private const int fadeTimeMilliseconds = 1000;
 
 	private Dictionary<string, TrackData> musicLayers;
-	private Node parent;
 	private Tween tween;
 
 	private void AddLayers(Dictionary<string, int> layers)
 	{
 		this.musicLayers = new Dictionary<string, TrackData>();
-		foreach(KeyValuePair<string, int> layer in layers)
+		foreach (KeyValuePair<string, int> layer in layers)
 		{
-			TrackData trackData = new TrackData((AudioStreamPlayer) this.GetNode(layer.Key), layer.Value);
+			TrackData trackData = new TrackData((AudioStreamPlayer)this.GetNode(layer.Key), layer.Value);
 			this.musicLayers.Add(layer.Key, trackData);
 		}
 	}
@@ -52,7 +51,6 @@ public class AudioSourceImplementation : Node, AudioSource
 
 	public override void _Ready()
 	{
-		this.parent = parent;
 		this.tween = (Tween)this.GetNode("Tween");
 		this.AddLayers(new Dictionary<string, int>
 		{

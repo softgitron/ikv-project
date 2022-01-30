@@ -56,7 +56,9 @@ public abstract class TCPImpl : Node
         // Run TCP action.
         TCPAction action;
         listeners.TryGetValue(command, out action);
-        action.TCPAction(parameters);
+        if (action != null) {
+            action.TCPAction(parameters);
+        }
     }
 
     public abstract override void _Process(float delta);
