@@ -62,6 +62,8 @@ public class Player : KinematicBody2D
 		{
 			HandleLadders();
 		}
+		// IMPORTANT!
+		positionSync.Update();
 	}
 
 	public void GroundMove(int direction)
@@ -88,6 +90,11 @@ public class Player : KinematicBody2D
 
 	public void HandleInteract()
 	{
+		// IMPORTANT!
+		if (toggle != null) {
+			toggle.Toggle();
+		}
+
 		Item item;
 		if (pickedItem != null)
 		{
