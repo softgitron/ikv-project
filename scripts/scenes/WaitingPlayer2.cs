@@ -15,7 +15,7 @@ public class WaitingPlayer2 : Node
         TCPServerImpl.StartServer();
 
         TCPServerImpl.ConnectedListener = new Action(() => {
-			SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.DarkWorld);
+			SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.World);
 		});
     }
 }

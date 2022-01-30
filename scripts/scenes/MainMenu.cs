@@ -31,7 +31,7 @@ public class MainMenu: Control
 		TCPClientImpl.ConnectToServer(AddressTextEdit.Text);
 
 		TCPClientImpl.ConnectedListener = new Action(() => {
-			SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.LightWorld);
+			SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.World);
 		});
 	}
 }
