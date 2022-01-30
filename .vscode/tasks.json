@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "build",
-            "command": "/opt/godot-mono-bin/godot/Godot_v3.4.2-stable_mono_x11.64",
+            "command": "c:/Users/Omistaja/Documents/Godot/Godot_v3.4.2-stable_mono_win64/Godot_v3.4.2-stable_mono_win64.exe\r",
             "type": "process",
             "args": [
                 "--build-solutions",

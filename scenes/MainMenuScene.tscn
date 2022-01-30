@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/scenes/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://scenes/AudioManager.tscn" type="PackedScene" id=2]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -39,3 +40,5 @@ text = "Player 2 (join)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioManager" parent="." instance=ExtResource( 2 )]
