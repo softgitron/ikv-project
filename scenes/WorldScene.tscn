@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Art/Singleckle.png" type="Texture" id=1]
 [ext_resource path="res://Art/ForestTreetacles2nlayer.png" type="Texture" id=2]
@@ -19,7 +19,9 @@
 [ext_resource path="res://assets/map/breakableBox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/toggleDoor/darkGate.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/toggleDoor/darkPreasureToggle.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/toggleDoor/treeToggle.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Art/FarmDaisies.png" type="Texture" id=20]
+[ext_resource path="res://Art/FarmSky.png" type="Texture" id=21]
+[ext_resource path="res://Art/FarmFence.png" type="Texture" id=22]
 
 [node name="RootNode" type="Node2D"]
 
@@ -37,118 +39,119 @@ margin_left = 50.0
 margin_top = 50.0
 text = "Testiiiii"
 
-[node name="TileMap" parent="GameManager" instance=ExtResource( 11 )]
-position = Vector2( -23, 8 )
-cell_size = Vector2( 2500, 256 )
-show_collision = true
-tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0 )
-
 [node name="MainCamera" parent="GameManager" instance=ExtResource( 13 )]
 position = Vector2( 536, -1936 )
 offset = Vector2( 0, -500 )
 zoom = Vector2( 5, 5 )
 smoothing_speed = 10.0
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager"]
+[node name="DarkWorld" type="Node2D" parent="GameManager"]
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
+[node name="TileMap" parent="GameManager/DarkWorld" instance=ExtResource( 11 )]
+cell_size = Vector2( 2500, 256 )
+show_collision = true
+tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager/DarkWorld"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="GameManager/DarkWorld/ParallaxBackground"]
 position = Vector2( -1920, -3968 )
 motion_scale = Vector2( 0.25, 1 )
 motion_mirroring = Vector2( 15000, 3000 )
 
-[node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/ParallaxLayer3"]
+[node name="Sprite" type="Sprite" parent="GameManager/DarkWorld/ParallaxBackground/ParallaxLayer3"]
 position = Vector2( 512, 300 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="GameManager/DarkWorld/ParallaxBackground"]
 position = Vector2( 1600, -4608 )
 motion_scale = Vector2( 0.1, 1 )
 motion_mirroring = Vector2( 9600, 0 )
 script = ExtResource( 3 )
 cloudSpeed = -100.0
 
-[node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/ParallaxLayer4"]
+[node name="Sprite" type="Sprite" parent="GameManager/DarkWorld/ParallaxBackground/ParallaxLayer4"]
 position = Vector2( 512, 300 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 6 )
 centered = false
 
-[node name="Forest2" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
+[node name="Forest2" type="ParallaxLayer" parent="GameManager/DarkWorld/ParallaxBackground"]
 position = Vector2( 192, -2624 )
 motion_scale = Vector2( 0.4, 1 )
 motion_mirroring = Vector2( 23400, 0 )
 
-[node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/Forest2"]
+[node name="Sprite" type="Sprite" parent="GameManager/DarkWorld/ParallaxBackground/Forest2"]
 position = Vector2( 512, 300 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Forest1" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
+[node name="Forest1" type="ParallaxLayer" parent="GameManager/DarkWorld/ParallaxBackground"]
 position = Vector2( 128, -1472 )
 z_index = 10
 z_as_relative = false
 motion_scale = Vector2( 0.7, 1 )
 motion_mirroring = Vector2( 15600, 0 )
 
-[node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/Forest1"]
+[node name="Sprite" type="Sprite" parent="GameManager/DarkWorld/ParallaxBackground/Forest1"]
 position = Vector2( 512, 300 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 9 )
 centered = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="GameManager/DarkWorld/ParallaxBackground"]
 position = Vector2( 384, -1728 )
 motion_mirroring = Vector2( 18000, 0 )
 
-[node name="ParallaxForeground" type="ParallaxBackground" parent="GameManager"]
+[node name="ParallaxForeground" type="ParallaxBackground" parent="GameManager/DarkWorld"]
 layer = 1
 
-[node name="Assets" type="Node2D" parent="GameManager"]
+[node name="Assets" type="Node2D" parent="GameManager/DarkWorld"]
 
-[node name="Singleckle" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 6772, -200 )
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Singleckle2" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle2" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 7759, -374 )
 rotation = 0.307562
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Singleckle3" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle3" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 9016, -1022 )
 rotation = -0.197657
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Singleckle4" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle4" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 10192, -907 )
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Singleckle5" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle5" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 11190, -485 )
 rotation = 0.307562
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Singleckle6" type="Sprite" parent="GameManager/Assets"]
+[node name="Singleckle6" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 12425, -749 )
 texture = ExtResource( 1 )
 offset = Vector2( -1295, -428 )
 
-[node name="Sprite" type="Sprite" parent="GameManager/Assets"]
+[node name="Sprite" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 24478, 883 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 7 )
 centered = false
 offset = Vector2( -4716.4, -462.2 )
 
-[node name="Sprite2" type="Sprite" parent="GameManager/Assets"]
+[node name="Sprite2" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 8332, 378 )
 rotation = 0.00334849
 scale = Vector2( 2.0108, 5 )
@@ -156,7 +159,7 @@ texture = ExtResource( 7 )
 centered = false
 offset = Vector2( -1567.6, -504 )
 
-[node name="Sprite3" type="Sprite" parent="GameManager/Assets"]
+[node name="Sprite3" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14445, 686.001 )
 rotation = 0.269983
 scale = Vector2( 1.20039, 5 )
@@ -164,131 +167,189 @@ texture = ExtResource( 7 )
 centered = false
 offset = Vector2( -1567.6, -504 )
 
-[node name="Gravestone1" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone1" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13659, -63 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone2" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone2" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13659, -63 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone3" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone3" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13659, -63 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone4" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone4" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14348, 270 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone5" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone5" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13151, 7 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone6" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone6" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14046, 26 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone7" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone7" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 15034, 810 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone8" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone8" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 16173, 1083 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone9" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone9" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 15551, 896 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone10" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone10" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13716, 552 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone11" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone11" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14618, 601 )
 texture = ExtResource( 16 )
 
-[node name="Gravestone12" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone12" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 12344, 130 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone13" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone13" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 12394, 584 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone14" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone14" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 12817, 289 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone15" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone15" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 16618, 1150 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone16" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone16" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 15362, 513 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone17" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone17" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 13257, 498 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone18" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone18" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14670, 1036 )
 texture = ExtResource( 12 )
 
-[node name="Gravestone19" type="Sprite" parent="GameManager/Assets"]
+[node name="Gravestone19" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 14075, 748 )
 texture = ExtResource( 12 )
 
-[node name="Sprite4" type="Sprite" parent="GameManager/Assets"]
+[node name="Sprite4" type="Sprite" parent="GameManager/DarkWorld/Assets"]
 position = Vector2( 42411, 883 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 7 )
 centered = false
 offset = Vector2( -4716.4, -462.2 )
 
-[node name="BreakableBox" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 18462, 552 )
 
-[node name="BreakableBox2" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox2" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 18770, 546 )
 
-[node name="BreakableBox3" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox3" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 18619, 291 )
 
-[node name="BreakableBox4" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox4" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 19040, 546 )
 
-[node name="BreakableBox5" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox5" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 19352, 536 )
 
-[node name="BreakableBox6" parent="GameManager/Assets" instance=ExtResource( 17 )]
+[node name="BreakableBox6" parent="GameManager/DarkWorld/Assets" instance=ExtResource( 17 )]
 position = Vector2( 19040, 294 )
 
-[node name="Collision" type="Node2D" parent="GameManager"]
+[node name="Collision" type="Node2D" parent="GameManager/DarkWorld"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameManager/Collision"]
+[node name="StaticBody2D" type="StaticBody2D" parent="GameManager/DarkWorld/Collision"]
 position = Vector2( 5187, 590 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameManager/Collision/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameManager/DarkWorld/Collision/StaticBody2D"]
 polygon = PoolVector2Array( 76, -147, 558, -661, 1016, -630, 1219, -661, 1549, -699, 1924, -706, 2343, -655, 2647, -706, 2984, -706, 3219, -744, 3378, -636, 3708, -661, 4057, -630, 4451, -604, 4559, -687, 4914, -661, 5213, -598, 5784, -598, 5968, -572, 6445, -458, 6953, -509, 7314, -484, 7676, -572, 7886, -547, 8235, -445, 8591, -382, 8953, -293, 9245, -242, 9626, -128, 10026, 5, 10165, 50, 10318, 209, -70, 221, -661, 234 )
 
-[node name="Pressure Plate" parent="GameManager" instance=ExtResource( 19 )]
+[node name="Pressure Plate" parent="GameManager/DarkWorld" instance=ExtResource( 19 )]
 position = Vector2( 16776, 759 )
 handleName = "pp_big"
 
-[node name="Gate" parent="GameManager/Pressure Plate" instance=ExtResource( 18 )]
-position = Vector2( 1018.54, -46.8346 )
+[node name="Gate" parent="GameManager/DarkWorld/Pressure Plate" instance=ExtResource( 18 )]
+position = Vector2( 1019.07, -52.6486 )
 scale = Vector2( 0.2, 0.2 )
+
+[node name="LightWorld" type="Node2D" parent="GameManager"]
+position = Vector2( 0, 15000 )
+
+[node name="TileMap" parent="GameManager/LightWorld" instance=ExtResource( 11 )]
+cell_size = Vector2( 2500, 256 )
+show_collision = true
+tile_data = PoolIntArray( 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="GameManager/LightWorld"]
+offset = Vector2( 0, 15000 )
+transform = Transform2D( 1, 0, 0, 1, 0, 15000 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="GameManager/LightWorld/ParallaxBackground"]
+position = Vector2( -1920, -3968 )
+motion_scale = Vector2( 0.25, 1 )
+motion_mirroring = Vector2( 15000, 1250 )
+
+[node name="Sprite" type="Sprite" parent="GameManager/LightWorld/ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 512, 300 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 21 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="GameManager/LightWorld/ParallaxBackground"]
+position = Vector2( 1600, -4608 )
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 10000, 0 )
+script = ExtResource( 3 )
+cloudSpeed = -100.0
+
+[node name="Sprite" type="Sprite" parent="GameManager/LightWorld/ParallaxBackground/ParallaxLayer4"]
+position = Vector2( 512, 300 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Forest2" type="ParallaxLayer" parent="GameManager/LightWorld/ParallaxBackground"]
+position = Vector2( 192, -2624 )
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 20000, 0 )
+
+[node name="Sprite" type="Sprite" parent="GameManager/LightWorld/ParallaxBackground/Forest2"]
+position = Vector2( 512, 300 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 20 )
+centered = false
+
+[node name="Forest1" type="ParallaxLayer" parent="GameManager/LightWorld/ParallaxBackground"]
+position = Vector2( 128, -1472 )
+z_index = 10
+z_as_relative = false
+motion_scale = Vector2( 0.7, 1 )
+motion_mirroring = Vector2( 15000, 0 )
+
+[node name="Sprite" type="Sprite" parent="GameManager/LightWorld/ParallaxBackground/Forest1"]
+position = Vector2( 512, 300 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="GameManager/LightWorld/ParallaxBackground"]
+position = Vector2( 384, -1728 )
+motion_mirroring = Vector2( 10000, 0 )
+
+[node name="ParallaxForeground" type="ParallaxBackground" parent="GameManager/LightWorld"]
+layer = 1
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 3776, 384 )
-
-[node name="ToggleInteract" parent="GameManager" instance=ExtResource( 20 )]
-position = Vector2( 30457, -731 )
-handleName = "darkGate2"
-openablePath = "Gate"
-
-[node name="Gate" parent="GameManager/ToggleInteract" instance=ExtResource( 18 )]
-position = Vector2( 304.504, 130.208 )
-scale = Vector2( 0.3, 0.3 )
