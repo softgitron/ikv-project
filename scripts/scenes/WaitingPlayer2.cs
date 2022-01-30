@@ -13,8 +13,7 @@ public class WaitingPlayer2 : Node
 		playerIpLabel.Text = $"Use one of the following addresses for player 2: {possibleAddresses}";
 
 		TCPServerImpl.StartServer();
-
-		TCPServerImpl.ConnectedListener = new Action(() => {
+    TCPServerImpl.ConnectedListener = new Action(() => {
 			SceneManagement.GetInstance().ChangeScene(SceneManagement.Scenes.World);
 		});
 	}
