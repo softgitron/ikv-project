@@ -14,32 +14,40 @@ public class Player : KinematicBody2D
 	private float acceleration = 100;
 	[Export]
 	private int gravity = 100;
-	public Sprite sprite;
+	public AnimatedSprite sprite;
 	public List<Area2D> surroundingInteractives = new List<Area2D>();
 	private Item pickedItem;
 	public int ladders = 0;
-	public string type = "light";
 	public int doubleJump = 0;
 	private int attack = 0;
 	private List<PlayerState> stateStack = new List<PlayerState>();
 	private PlayerState currentState = new IdleState();
 	private Toggleable toggle;
 	private PositionSync positionSync;
-	
+	private float maxAngle = 0.9f;
+	private PlayerThemeSync themeSync;
+
 	public override void _Ready()
 	{
 		SetPhysicsProcess(false);
 	}
-	public void Initialize()
+	public void Initialize(SpriteFrames frames)
 	{
-		sprite = (Sprite)GetNode("Sprite");
-		switch (type)
+		sprite = (AnimatedSprite)GetNode("AnimatedSprite");
+		AudioSource audioSource = ((GameManager)GetParent()).audioSource;
+
+		sprite.Frames = frames;
+
+		switch (Main.player)
 		{
-			case "light":
+			case 2:
 				doubleJump++;
+				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.darkPlayerTheme);
 				break;
-			case "dark":
+			case 1:
+				jump = (int)(0.6 * jump);
 				attack++;
+				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.lightPlayerTheme);
 				break;
 			default:
 				break;
@@ -55,33 +63,45 @@ public class Player : KinematicBody2D
 		{
 			ChangeState(newState);
 		}
-		GD.Print(currentState);
 
 		if (ladders > 0)
 		{
 			HandleLadders();
 		}
+		// IMPORTANT!
+		positionSync.Update();
 	}
 
 	public void GroundMove(int direction)
 	{
 		velocity.y += gravity;
 		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity);
+		velocity = MoveAndSlide(velocity, Vector2.Up, stopOnSlope: true, floorMaxAngle: maxAngle);
 	}
 	public void AirMove(int direction)
 	{
 		velocity.y += gravity;
 		velocity.x = maxSpeed * direction;
-		velocity = MoveAndSlide(velocity, Vector2.Up);
+		velocity = MoveAndSlide(velocity, Vector2.Up, stopOnSlope: true, floorMaxAngle: maxAngle);
 		if (IsOnFloor())
 		{
 			ChangeState(new MoveState());
 		}
 	}
 
+	public void Drop()
+	{
+		Position = new Vector2(Position.x, Position.y + 1);
+	}
+
 	public void HandleInteract()
 	{
+		// IMPORTANT!
+		if (toggle != null)
+		{
+			toggle.Toggle();
+		}
+
 		Item item;
 		if (pickedItem != null)
 		{
@@ -115,8 +135,10 @@ public class Player : KinematicBody2D
 		playerState.ExitState(this);
 		stateStack.Insert(0, playerState);
 		currentState = stateStack[0];
+		currentState.EnterState(this);
+		GD.Print(currentState);
 	}
-	
+
 	private void moveToPreviousState()
 	{
 		stateStack.RemoveAt(0);
@@ -126,21 +148,47 @@ public class Player : KinematicBody2D
 	// Handles interacting with items.
 	private void _OnVicinityEntered(Area2D area)
 	{
-		if (area is Toggleable) {
-			toggle = (Toggleable) area;
+		if (area is Toggleable)
+		{
+			toggle = (Toggleable)area;
 		}
 
 		if (area is Item item)
 		{
 			surroundingInteractives.Add(item);
 		}
+
+		if (area.Name.EndsWith("Theme"))
+		{
+			((GameManager)GetParent()).audioSource.FadeInTrack(area.Name);
+		}
+
+		if (area.Name == "PlayerThemeSync")
+		{
+			this.themeSync.SetThemeState(true);
+		}
 	}
 	private void _OnVicinityExited(Area2D area)
 	{
-		if (area == toggle) {
+		if (area == toggle)
+		{
 			toggle = null;
 		}
 		surroundingInteractives.Remove(area);
+
+		if (area.Name.EndsWith("Theme"))
+		{
+			((GameManager)GetParent()).audioSource.FadeOutTrack(area.Name);
+		}
+
+		if (area.Name == "PlayerThemeSync")
+		{
+			this.themeSync.SetThemeState(false);
+		}
+	}
+	private void _OnAnimationFinished()
+	{
+		currentState.HandleAnimationFinished(this);
 	}
 	private void PickItem(Item item)
 	{

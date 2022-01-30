@@ -18,14 +18,16 @@ public class MoveState : PlayerState
         {
             return new IdleState();
         }
-        if (player.velocity.y != 0)
+        if (!player.IsOnFloor())
         {
             return new AirState();
         }
 
         if (Input.IsActionJustPressed("jump_button"))
         {
-            player.velocity.y -= player.jump;
+            player.velocity.y = -player.jump;
+            player.sprite.Stop();
+            player.sprite.Play("jump");
             return new AirState();
         }
 
@@ -36,11 +38,24 @@ public class MoveState : PlayerState
             player.HandleInteract();
         }
 
+        if (Input.IsActionJustPressed("crouch_button"))
+        {
+            player.Drop();
+        }
+
         return null;
+    }
+    public void HandleAnimationFinished(Player player)
+    {
+        player.sprite.Play("walk");
     }
 
     public void ExitState(Player player)
     {
-        
+
+    }
+    public void EnterState(Player player)
+    {
+        player.sprite.Play("walk");
     }
 }
