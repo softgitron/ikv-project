@@ -278,17 +278,17 @@ position = Vector2( 16776, 759 )
 handleName = "pp_big"
 
 [node name="Gate" parent="GameManager/Pressure Plate" instance=ExtResource( 18 )]
-position = Vector2( 1019.07, -52.6486 )
+position = Vector2( 1018.54, -46.8346 )
 scale = Vector2( 0.2, 0.2 )
 
 [node name="Player" parent="GameManager" instance=ExtResource( 5 )]
 position = Vector2( 3776, 384 )
 
 [node name="ToggleInteract" parent="GameManager" instance=ExtResource( 20 )]
-position = Vector2( 30452, -1124 )
+position = Vector2( 30457, -731 )
 handleName = "darkGate2"
 openablePath = "Gate"
 
 [node name="Gate" parent="GameManager/ToggleInteract" instance=ExtResource( 18 )]
-position = Vector2( 311.801, 165.234 )
+position = Vector2( 304.504, 130.208 )
 scale = Vector2( 0.3, 0.3 )
