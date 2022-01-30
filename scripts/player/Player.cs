@@ -139,6 +139,11 @@ public class Player : KinematicBody2D
 		{
 			surroundingInteractives.Add(item);
 		}
+
+		if (area.Name.EndsWith("Theme"))
+		{
+			((GameManager) GetParent()).audioSource.FadeInTrack(area.Name);
+		}
 	}
 	private void _OnVicinityExited(Area2D area)
 	{
@@ -146,6 +151,11 @@ public class Player : KinematicBody2D
 			toggle = null;
 		}
 		surroundingInteractives.Remove(area);
+		
+		if (area.Name.EndsWith("Theme"))
+		{
+			((GameManager) GetParent()).audioSource.FadeOutTrack(area.Name);
+		}
 	}
 	private void PickItem(Item item)
 	{
