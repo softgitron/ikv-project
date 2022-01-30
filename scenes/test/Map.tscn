@@ -20,4 +20,4 @@ position = Vector2( 448, 470 )
 scale = Vector2( 3, 3 )
 
 [node name="Spectre" parent="." instance=ExtResource( 7 )]
-position = Vector2( 730, -410 )
+position = Vector2( 871, -365 )
