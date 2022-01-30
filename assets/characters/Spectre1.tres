@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=2]
+
+[ext_resource path="res://Art/MonsterA3.png" type="Texture" id=1]
+[ext_resource path="res://Art/MonsterA8 – kopio.png" type="Texture" id=2]
+[ext_resource path="res://Art/MonsterA1.png" type="Texture" id=3]
+[ext_resource path="res://Art/MonsterA7.png" type="Texture" id=4]
+[ext_resource path="res://Art/MonsterA6.png" type="Texture" id=5]
+[ext_resource path="res://Art/MonsterA4.png" type="Texture" id=6]
+[ext_resource path="res://Art/MonsterA2.png" type="Texture" id=7]
+[ext_resource path="res://Art/MonsterA5.png" type="Texture" id=8]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 10.0
+} ]
