@@ -21,6 +21,16 @@ public class GameManager : Node
 
 		camera.Initialize(player);
 		player.Initialize();
+		if (player.type == "light")
+		{
+			audioSource.FadeInTrack(AudioSourceImplementation.lightPlayerTheme, 0);
+			audioSource.FadeInTrack(AudioSourceImplementation.lightWorldTheme, 0);
+		}
+		else
+		{
+			audioSource.FadeInTrack(AudioSourceImplementation.darkPlayerTheme, 0);
+			audioSource.FadeInTrack(AudioSourceImplementation.darkWorldTheme, 0);
+		}
 	}
 
 	private string GetFps()

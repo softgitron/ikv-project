@@ -25,7 +25,7 @@ public class AudioSourceImplementation : Node, AudioSource
 	private const int lightWorldThemeVolume = -5;
 	private const int darkWorldThemeVolume = -3;
 
-	private const int fadeTimeMilliseconds = 1000;
+	private const int defaultFadeTimeMilliseconds = 1000;
 
 	private Dictionary<string, TrackData> musicLayers;
 	private Tween tween;
@@ -65,16 +65,27 @@ public class AudioSourceImplementation : Node, AudioSource
 	public void FadeInTrack(string trackName)
 	{
 		TrackData track = this.musicLayers[trackName];
-		this.PerformFade(track.player, track.volume);
+		this.PerformFade(track.player, track.volume, defaultFadeTimeMilliseconds);
+	}
+	public void FadeInTrack(string trackName, int fadeTimeMilliseconds)
+	{
+		TrackData track = this.musicLayers[trackName];
+		this.PerformFade(track.player, track.volume, fadeTimeMilliseconds);
 	}
 
 	public void FadeOutTrack(string trackName)
 	{
 		TrackData track = this.musicLayers[trackName];
-		this.PerformFade(track.player, -80);
+		this.PerformFade(track.player, -80, defaultFadeTimeMilliseconds);
+	}
+	
+	public void FadeOutTrack(string trackName, int fadeTimeMilliseconds)
+	{
+		TrackData track = this.musicLayers[trackName];
+		this.PerformFade(track.player, -80, fadeTimeMilliseconds);
 	}
 
-	private void PerformFade(AudioStreamPlayer player, int targetVolume)
+	private void PerformFade(AudioStreamPlayer player, int targetVolume, int fadeTimeMilliseconds)
 	{
 		this.tween.InterpolateProperty(player, "volume_db", player.VolumeDb, targetVolume, fadeTimeMilliseconds / 1000);
 		this.tween.Start();
