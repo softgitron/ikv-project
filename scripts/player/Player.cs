@@ -108,16 +108,11 @@ public class Player : KinematicBody2D
 
 		bool[] riftState = riftSync.GetState();
 		if (riftState[0] == true && riftState[1] == true) {
-			if (Main.player == 1 && !wrongWorld) {
-				Position = new Vector2(Position.x, Position.y + 15000);
-			} else if (Main.player == 1 && wrongWorld) { 
-				Position = new Vector2(Position.x, Position.y - 15000);
-			} else if (Main.player == 2 && !wrongWorld) { 
-				Position = new Vector2(Position.x, Position.y - 15000);
-			} else if (Main.player == 2 && wrongWorld) { 
-				Position = new Vector2(Position.x, Position.y + 15000);
-			}
-			wrongWorld = !wrongWorld;
+			Vector2  otherPosition = positionSync.controllObject.Position;
+			Vector2 ownPosition = Position;
+			Position = otherPosition;
+			positionSync.controllObject.Position = ownPosition;
+			positionSync.Swap();
 		}
 
 		Item item;
@@ -186,7 +181,7 @@ public class Player : KinematicBody2D
 			this.themeSync.SetThemeState(true);
 		}
 
-		if (area.Name == "Rift") {
+		if (area.Name.EndsWith("Rift")) {
 			bool[] currentState = riftSync.GetState();
 			currentState[Main.player - 1] = true;
 			riftSync.SetState(currentState);

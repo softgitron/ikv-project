@@ -7,10 +7,11 @@ extents = Vector2( 99.5, 171.5 )
 
 [node name="Rift" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AreaRift" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRift"]
 position = Vector2( -25.5, 10.5 )
+scale = Vector2( 1, 1.5 )
 shape = SubResource( 1 )
 
 [node name="RiftLight" type="Sprite" parent="."]
