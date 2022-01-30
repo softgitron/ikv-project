@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://resources/sprites/characters/light_anim/light_anim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://resources/sprites/characters/anim/light_anim.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -24,7 +24,8 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "idle"
+animation = "walk"
+frame = 5
 
 [node name="Interaction" type="Area2D" parent="."]
 
@@ -32,5 +33,6 @@ animation = "idle"
 position = Vector2( -31.031, 228.134 )
 shape = SubResource( 2 )
 
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_OnAnimationFinished"]
 [connection signal="area_entered" from="Interaction" to="." method="_OnVicinityEntered"]
 [connection signal="area_exited" from="Interaction" to="." method="_OnVicinityExited"]

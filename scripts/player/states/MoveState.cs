@@ -25,7 +25,8 @@ public class MoveState : PlayerState
 
         if (Input.IsActionJustPressed("jump_button"))
         {
-            player.velocity.y -= player.jump;
+            player.velocity.y = -player.jump;
+            player.sprite.Play("jump");
             return new AirState();
         }
 
@@ -38,9 +39,17 @@ public class MoveState : PlayerState
 
         return null;
     }
+    public void HandleAnimationFinished(Player player)
+    {
+        player.sprite.Play("walk");
+    }
 
     public void ExitState(Player player)
     {
-        
+
+    }
+    public void EnterState(Player player)
+    {
+        player.sprite.Play("walk");
     }
 }

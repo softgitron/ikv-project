@@ -51,7 +51,7 @@ position = Vector2( 3776, 384 )
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
 position = Vector2( -1920, -3968 )
 motion_scale = Vector2( 0.25, 1 )
-motion_mirroring = Vector2( 15000, 1250 )
+motion_mirroring = Vector2( 15000, 3000 )
 
 [node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/ParallaxLayer3"]
 position = Vector2( 512, 300 )
@@ -62,7 +62,7 @@ centered = false
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
 position = Vector2( 1600, -4608 )
 motion_scale = Vector2( 0.1, 1 )
-motion_mirroring = Vector2( 10000, 0 )
+motion_mirroring = Vector2( 9600, 0 )
 script = ExtResource( 3 )
 cloudSpeed = -100.0
 
@@ -75,7 +75,7 @@ centered = false
 [node name="Forest2" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
 position = Vector2( 192, -2624 )
 motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 20000, 0 )
+motion_mirroring = Vector2( 23400, 0 )
 
 [node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/Forest2"]
 position = Vector2( 512, 300 )
@@ -88,7 +88,7 @@ position = Vector2( 128, -1472 )
 z_index = 10
 z_as_relative = false
 motion_scale = Vector2( 0.7, 1 )
-motion_mirroring = Vector2( 15000, 0 )
+motion_mirroring = Vector2( 15600, 0 )
 
 [node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/Forest1"]
 position = Vector2( 512, 300 )
@@ -98,7 +98,7 @@ centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="GameManager/ParallaxBackground"]
 position = Vector2( 384, -1728 )
-motion_mirroring = Vector2( 14000, 0 )
+motion_mirroring = Vector2( 18000, 0 )
 
 [node name="Sprite" type="Sprite" parent="GameManager/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 512, 300 )
