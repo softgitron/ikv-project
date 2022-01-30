@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Art/Singleckle.png" type="Texture" id=1]
 [ext_resource path="res://Art/ForestTreetacles2nlayer.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/toggleDoor/darkGate.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/toggleDoor/darkPreasureToggle.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/toggleDoor/treeToggle.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/audio/PlayerThemeSyncArea.tscn" type="PackedScene" id=21]
 
 [node name="RootNode" type="Node2D"]
 
@@ -273,7 +274,7 @@ polygon = PoolVector2Array( 76, -147, 558, -661, 1016, -630, 1219, -661, 1549, -
 
 [node name="Pressure Plate" parent="GameManager" instance=ExtResource( 19 )]
 position = Vector2( 16776, 759 )
-handleName = "darkGate1"
+handleName = "pp_big"
 
 [node name="Gate" parent="GameManager/Pressure Plate" instance=ExtResource( 18 )]
 position = Vector2( 1019.07, -52.6486 )
@@ -290,3 +291,7 @@ openablePath = "Gate"
 [node name="Gate" parent="GameManager/ToggleInteract" instance=ExtResource( 18 )]
 position = Vector2( 311.801, 165.234 )
 scale = Vector2( 0.3, 0.3 )
+
+[node name="PlayerThemeSync" parent="." instance=ExtResource( 21 )]
+position = Vector2( 2061, 266 )
+scale = Vector2( 100, 100 )

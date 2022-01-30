@@ -25,6 +25,7 @@ public class Player : KinematicBody2D
 	private PlayerState currentState = new IdleState();
 	private Toggleable toggle;
 	private PositionSync positionSync;
+	private PlayerThemeSync themeSync;
 	
 	public override void _Ready()
 	{
@@ -33,13 +34,16 @@ public class Player : KinematicBody2D
 	public void Initialize()
 	{
 		sprite = (Sprite)GetNode("Sprite");
+		AudioSource audioSource = ((GameManager) GetParent()).audioSource;
 		switch (type)
 		{
 			case "light":
 				doubleJump++;
+				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.darkPlayerTheme);
 				break;
 			case "dark":
 				attack++;
+				this.themeSync = new PlayerThemeSync(audioSource, AudioSourceImplementation.lightPlayerTheme);
 				break;
 			default:
 				break;
@@ -151,6 +155,11 @@ public class Player : KinematicBody2D
 		{
 			((GameManager) GetParent()).audioSource.FadeInTrack(area.Name);
 		}
+
+		if (area.Name == "PlayerThemeSync")
+		{
+			this.themeSync.SetThemeState(true);
+		}
 	}
 	private void _OnVicinityExited(Area2D area)
 	{
@@ -162,6 +171,11 @@ public class Player : KinematicBody2D
 		if (area.Name.EndsWith("Theme"))
 		{
 			((GameManager) GetParent()).audioSource.FadeOutTrack(area.Name);
+		}
+		
+		if (area.Name == "PlayerThemeSync")
+		{
+			this.themeSync.SetThemeState(false);
 		}
 	}
 	private void PickItem(Item item)
