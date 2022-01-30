@@ -3,11 +3,11 @@ using System;
 
 public class NetworkedToggle : Area2D, Toggleable, StateSync<Boolean>
 {
-    [Export]
+	[Export]
 	public string handleName = "";
-    [Export]
+	[Export]
 	public string openablePath = "";
-    [Export]
+	[Export]
 	public bool defaultState = false;
     [Export]
 	public string offSprite = "";
@@ -17,7 +17,7 @@ public class NetworkedToggle : Area2D, Toggleable, StateSync<Boolean>
 
 	public override void _Ready()
 	{
-        stateSync = new StateSyncImpl<Boolean>(this, defaultState, handleName);
+		stateSync = new StateSyncImpl<Boolean>(this, defaultState, handleName);
 	}
 
     public void Toggle() {

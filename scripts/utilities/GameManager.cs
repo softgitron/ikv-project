@@ -6,7 +6,7 @@ public class GameManager : Node
 	private Player player;
 	private MainCamera camera;
 	private DebugOverlay debug;
-	private AudioSource audioSource;
+	public AudioSource audioSource;
 	public override void _Ready()
 	{
 		player = (Player)GetNode("Player");
@@ -21,6 +21,14 @@ public class GameManager : Node
 
 		camera.Initialize(player);
 		player.Initialize();
+		if (player.type == "light")
+		{
+			audioSource.FadeInTrack(AudioSourceImplementation.lightPlayerTheme, 0);
+		}
+		else
+		{
+			audioSource.FadeInTrack(AudioSourceImplementation.darkPlayerTheme, 0);
+		}
 	}
 
 	private string GetFps()
