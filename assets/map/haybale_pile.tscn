@@ -12,7 +12,7 @@ extents = Vector2( 217.158, 83.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 118, 89.25 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Haybalepile" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
