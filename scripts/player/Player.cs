@@ -15,6 +15,8 @@ public class Player : KinematicBody2D
 	[Export]
 	private int gravity = 100;
 	private Sprite sprite;
+	private PositionSync positionSync;
+	private Toggleable toggle;
 	public bool ladder_on = false;
 
 	public override void _Ready()
@@ -25,9 +27,11 @@ public class Player : KinematicBody2D
 	{
 		sprite = (Sprite)GetNode("Sprite");
 		SetPhysicsProcess(true);
+		positionSync = new PositionSync(this, Main.player, "player" + Main.player.ToString());
 	}
 	public override void _PhysicsProcess(float delta)
 	{
+		positionSync.Update();
 		int direction = Math.Sign(Input.GetActionStrength("right_button") - Input.GetActionStrength("left_button"));
 		if (direction > 0)
 		{
@@ -62,6 +66,27 @@ public class Player : KinematicBody2D
 		}
 		else {
 			gravity = 100;
+		}
+	}
+	private void _on_Player_2D_area_entered(Area2D area)
+	{
+	if (area is Toggleable) {
+			toggle = (Toggleable) area;
+		}
+	}
+
+	private void _on_Player_2D_area_exited(Area2D area)
+	{
+		if (area == toggle) {
+			toggle = null;
+		}
+	}
+
+	public override void _Input(InputEvent inputEvent)
+	{
+		if (inputEvent.IsActionPressed("interact") && toggle != null)
+		{
+			toggle.Toggle();
 		}
 	}
 }

@@ -9,8 +9,7 @@ public class SceneManagement : Node
         Player1,
         Player2,
         WaitingPlayer2,
-        DarkWorld,
-        LightWorld
+        World
     }
 
     public static PackedScene CurrentScene {get; private set;}
@@ -37,6 +36,11 @@ public class SceneManagement : Node
     }
 
     public void ChangeScene(Scenes scene) {
+        string newSceneName = $"res://scenes/{scene.ToString()}Scene.tscn";
+        if (CurrentScene != null && CurrentScene.ResourcePath == newSceneName) {
+            return;
+        }
+
         // Remove previous scene.
         if (CurrentScene != null) {
             sceneNode.RemoveChild(currentSceneNode);
@@ -44,7 +48,7 @@ public class SceneManagement : Node
         }
 
         // Load new scene.
-        CurrentScene = (PackedScene)ResourceLoader.Load($"res://scenes/{scene.ToString()}Scene.tscn");
+        CurrentScene = (PackedScene)ResourceLoader.Load(newSceneName);
         currentSceneNode = CurrentScene.Instance();
         sceneNode.AddChild(currentSceneNode);
     }
