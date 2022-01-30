@@ -1,27 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/characters/Spectre.cs" type="Script" id=1]
-[ext_resource path="res://Art/MonsterA5.png" type="Texture" id=2]
-[ext_resource path="res://Art/MonsterA1.png" type="Texture" id=3]
-[ext_resource path="res://Art/MonsterA2.png" type="Texture" id=4]
-[ext_resource path="res://Art/MonsterA6.png" type="Texture" id=5]
-[ext_resource path="res://Art/MonsterA7.png" type="Texture" id=6]
-[ext_resource path="res://Art/MonsterA8 – kopio.png" type="Texture" id=7]
-[ext_resource path="res://Art/MonsterA3.png" type="Texture" id=8]
-[ext_resource path="res://Art/MonsterA4.png" type="Texture" id=9]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "Normal",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Attack",
-"speed": 10.0
-} ]
+[ext_resource path="res://assets/characters/Spectre.tres" type="SpriteFrames" id=2]
 
 [node name="Spectre" type="RigidBody2D"]
 position = Vector2( 492, 245 )
@@ -36,7 +16,7 @@ scale = Vector2( 27.8, 47.3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
+frames = ExtResource( 2 )
 animation = "Normal"
 playing = true
 
